@@ -14,6 +14,7 @@ class AdminSizeController{
  	}
  	function store(){
  		$data = $_POST;
+ 		$data['created_at'] = Date('Y-m-d H:i:s');
  		$status = $this->model_size->create($data);
  		if($status){
  			header('location: ?role=admin&mod=size&act=T_list');
@@ -26,6 +27,7 @@ class AdminSizeController{
  	}
  	function update(){
  		$data = $_POST;
+ 		$data['updated_at'] = Date('Y-m-d H:i:s');
  		$s = $this->model_size->update($data);
  		if($s){
  			header('location: ?role=admin&mod=size&act=T_list');

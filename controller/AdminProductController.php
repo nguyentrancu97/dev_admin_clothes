@@ -47,6 +47,7 @@ class AdminProductController{
 		        if (move_uploaded_file($_FILES["img"]["tmp_name"], $target_file)) {
 		        	$data = array();
 		        	$data = $_POST;
+		        	$data['created_at'] = Date('Y-m-d H:i:s');
 		        	$data['img'] = $_FILES['img']['name'];
 		        	$status = $this->model_product->create($data);
 		        }else{
@@ -55,7 +56,7 @@ class AdminProductController{
    	 		}else{
    	 			$data = array();
 		        $data = $_POST;
-		        
+		        $data['created_at'] = Date('Y-m-d H:i:s');
 		        $status = $this->model_product->create($data);
    	 		}
    	 		if($status){
@@ -86,11 +87,13 @@ class AdminProductController{
 	        	move_uploaded_file($_FILES["img"]["tmp_name"], $target_file);
 	        	$data = array();
 	        	$data = $_POST;
+	        	$data['updated_at'] = Date('Y-m-d H:i:s');
 	        	$data['img'] = $_FILES['img']['name'];
 	        	$status = $this->model_product->update($data);
 	        	// var_dump($status);
 	        }else{
    	 			$data = $_POST; 
+   	 			$data['update_at'] = Date('Y-m-d H:i:s');
 		        $status = $this->model_product->update($data);
 		    }
 
@@ -117,6 +120,7 @@ class AdminProductController{
  	}
  	function update_size_color(){
  		$data = $_POST;
+ 		$data['updated_at'] = Date('Y-m-d H:i:s');
  		$status = $this->model_product_detail->update($data);
  		if($status){
  			header('location: ?role=admin&mod=product&act=list_size_color&product_id='.$data['product_id'].' ');
@@ -155,6 +159,7 @@ class AdminProductController{
  	}
  	function store_size_color(){
  		$data = $_POST;
+ 		$data['created_at'] = Date('Y-m-d H:i:s');
  		$result = $this->model_product_detail->create($data);
  		if($result){
  			header('location: ?role=admin&mod=product&act=list_size_color&product_id='.$data['product_id'].' ');

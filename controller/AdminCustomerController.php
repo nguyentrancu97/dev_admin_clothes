@@ -17,7 +17,7 @@ class AdminCustomerController{
  	}
  	function store(){
  		$data = $_POST;
-
+ 		$data['created_at'] = Date('Y-m-d H:i:s');
  		$status = $this->model_customer->create($data);
  		if($status){
  			header('location: ?role=admin&mod=customer&act=T_list');
@@ -33,6 +33,7 @@ class AdminCustomerController{
  		// echo "<pre>";
  		// print_r($data);
  		// die;
+ 		$data['updated_at'] = Date('Y-m-d H:i:s');
  		$s = $this->model_customer->update($data);
  		if($s){
  			header('location: ?role=admin&mod=customer&act=T_list');

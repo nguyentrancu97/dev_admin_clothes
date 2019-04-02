@@ -14,6 +14,7 @@ class AdminProducerController{
  	}
  	function store(){
  		$data = $_POST;
+ 		$data['created_at'] = Date('Y-m-d H:i:s');
  		$status = $this->model_producer->create($data);
  		if($status){
  			header('location: ?role=admin&mod=producer&act=T_list');
@@ -26,6 +27,7 @@ class AdminProducerController{
  	}
  	function update(){
  		$data = $_POST;
+ 		$data['updated_at'] = Date('Y-m-d H:i:s');
  		$s = $this->model_producer->update($data);
  		if($s){
  			header('location: ?role=admin&mod=producer&act=T_list');

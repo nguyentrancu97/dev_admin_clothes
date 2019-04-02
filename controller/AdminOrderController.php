@@ -20,6 +20,7 @@ class AdminOrderController{
  	}
  	function store(){
  		$data = $_POST;
+ 		$data['created_at'] = Date('Y-m-d H:i:s');
  		$status = $this->model_order->create($data);
  		if($status){
  			header('location: ?role=admin&mod=order&act=T_list');
@@ -32,6 +33,7 @@ class AdminOrderController{
  	}
  	function update(){
  		$data = $_POST;
+ 		$data['updated_at'] = Date('Y-m-d H:i:s');
  		$s = $this->model_order->update($data);
  		if($s){
  			header('location: ?role=admin&mod=order&act=T_list');

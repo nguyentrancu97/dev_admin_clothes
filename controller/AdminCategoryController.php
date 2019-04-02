@@ -15,6 +15,7 @@ class AdminCategoryController{
  	}
  	function store(){
  		$data = $_POST;
+ 		$data['created_at'] = Date('Y-m-d H:i:s');
  		$status = $this->model_category->create($data);
  		if($status){
  			header('location: ?role=admin&mod=category&act=T_list');
@@ -35,6 +36,7 @@ class AdminCategoryController{
  	}
  	function update(){
  		$data = $_POST;
+ 		$data['updated_at'] = Date('Y-m-d H:i:s');
  		$s = $this->model_category->update($data);
  		if($s){
  			header('location: ?role=admin&mod=category&act=T_list');

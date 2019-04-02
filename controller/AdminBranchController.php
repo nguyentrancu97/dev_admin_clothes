@@ -14,6 +14,7 @@ class AdminBranchController{
  	}
  	function store(){
  		$data = $_POST;
+ 		$data['created_at'] = Date('Y-m-d H:i:s');
  		$status = $this->model_branch->create($data);
  		if($status){
  			header('location: ?role=admin&mod=branch&act=T_list');
@@ -26,6 +27,7 @@ class AdminBranchController{
  	}
  	function update(){
  		$data = $_POST;
+ 		$data['created_at'] = Date('Y-m-d H:i:s');
  		$s = $this->model_branch->update($data);
  		if($s){
  			header('location: ?role=admin&mod=branch&act=T_list');

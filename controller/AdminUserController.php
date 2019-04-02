@@ -18,7 +18,11 @@ class AdminUserController{
  	}
  	function store(){
  		$data = $_POST;
- 		
+ 		// $date = Date('Y-m-d H:i:s');
+ 		// echo "$date";
+ 		// die;
+ 		$data['created_at'] = Date('Y-m-d H:i:s');
+
  		$status = $this->model_user->create($data);
  		if($status){
  			header('location: ?role=admin&mod=user&act=T_list');
@@ -32,9 +36,8 @@ class AdminUserController{
  	}
  	function update(){
  		$data = $_POST;
- 		// echo "<pre>";
- 		// print_r($data);
- 		// die;
+ 		
+ 		$data['update_at'] = Date('Y-m-d H:i:s');
  		$s = $this->model_user->update($data);
  		if($s){
  			header('location: ?role=admin&mod=user&act=T_list');
