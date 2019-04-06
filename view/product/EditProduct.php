@@ -19,7 +19,7 @@
 	<!-- Default box -->
 	<div class="box">
 		<div class="box-header with-border" id="table">
-			<a href="?role=admin&mod=product&act=list_size_color&product_id=<?= $id ?>" style="margin-bottom: 20px;" class="btn btn-primary"><i class="fa fa-plus-circle" aria-hidden="true"></i>&nbsp;&nbsp;Sửa size và color</a>
+			<a href="?role=admin&mod=product&act=list_size_color&product_id=<?= $id ?>" style="margin-bottom: 20px;" class="btn btn-success"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>&nbsp;&nbsp;Size và color</a>
 			<form action="?role=admin&mod=product&act=update" method="POST" enctype="multipart/form-data" role="form">	
 				<div class="form-group">
 					<label for="">Product_id</label>
@@ -28,6 +28,10 @@
 				<div class="form-group">
 					<label for="">Name</label>
 					<input type="text" class="form-control" value="<?= $row['name'] ?>" name="name" required="required">
+				</div>
+				<div class="form-group">
+					<label for="">Code</label>
+					<input type="text" class="form-control" value="<?= $row['product_code'] ?>" name="product_code" required="required">
 				</div>
 				<div class="form-group">
 					<label for="">Img</label>
@@ -64,7 +68,7 @@
 				</div>
 				<div class="form-group" style="margin-top: 38px;">
 
-					<button type="submit" class="btn btn-primary">Submit</button>
+					<button type="submit" class="btn btn-primary">Edit</button>
 				</div>
 
 

@@ -51,11 +51,11 @@
 						<tbody>
 							<tr>
 								<td style="width: 30%; font-weight: 600;">Địa chỉ nhận</td>
-								<td><?php echo $data_order[0]['address_receive'] ?></td>
+								<td><?php echo $data_order_detail[0]['address_receive'] ?></td>
 							</tr>
 							<tr>
 								<td style="width: 30%;font-weight: 600;">Điện thoại nhận</td>
-								<td><?php echo $data_order[0]['phone_receive'] ?></td>
+								<td><?php echo $data_order_detail[0]['phone_receive'] ?></td>
 							</tr>
 						</tbody>
 					</table>
@@ -72,7 +72,7 @@
 						</thead>
 						<tbody>
 							<?php $tong = 0 ;
-							foreach ($data_order as $key => $value){
+							foreach ($data_order_detail as $key => $value){
 								$tong += $value['price'] * $value['quantity_buy'];
 							?>
 
@@ -93,7 +93,13 @@
 
 				</div>
 			</div>
-			<a class="btn btn-success" href="">Xử lí</a>
+			<?php if($data_order_detail[0]['state'] == 0){ 	?>
+
+			<a class="btn btn-success" href="?role=admin&mod=order&act=process&order_id=<?php echo 
+			$order_id ?>">Xử lí</a>
+
+			<?php } ?>
+			
 			<a class="btn btn-primary" href="?role=admin&mod=order&act=T_list">Quay Lại</a>
 		</div>
 

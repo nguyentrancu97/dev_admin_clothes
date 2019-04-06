@@ -28,8 +28,9 @@
 						<th>Customer Name</th>
 						<th>Address Receive</th>
 						<th>Phone Receive</th>
-						<th>Create At</th>
-						<th>#</th>
+						<th>State</th>
+						<th>Created At</th>
+						<th>Action</th>
 					</tr>
 				</thead>
 				<tbody id="tbody">
@@ -40,6 +41,15 @@
 							<td><?= $row['customer_name']?></td>
 							<td><?= $row['address_receive']?></td>
 							<td><?= $row['phone_receive']?></td>
+							<td><?php
+							if($row['state'] == 1){
+								echo "<i class='fa fa-check'></i>";
+							}else{
+								echo "<i class='fa fa-circle'></i>";
+							}
+							
+
+							?></td>
 							<td><?= $row['create_at']?></td>
 							<td>
 								<a href="?role=admin&mod=order&act=detail&order_id=<?php echo $row['order_id'] ?>" class="btn btn-info"><i class="fa fa-eye" aria-hidden="true"></i></a>
@@ -67,3 +77,10 @@
 </div>
 <!-- /.content-wrapper -->
 <?php include_once("layouts/footer.php") ?>
+<?php if(isset($_COOKIE['process_success'])){ ?>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			toastr.success('Xử Lí Thành Công!!');	
+		})
+	</script>
+<?php } ?>

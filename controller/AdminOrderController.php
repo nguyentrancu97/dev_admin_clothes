@@ -1,12 +1,15 @@
 <?php 
 include_once('model/Admin/Order.php');
 include_once('model/Admin/OrderDetail.php');
-
+include_once('model/Admin/ProductDetail.php');
 class AdminOrderController{
 	var $model_order;
+	var $model_order_detail;
+	var $model_product_detail;
 	function __construct(){
 		$this->model_order = new Order();
 		$this->model_order_detail = new OrderDetail();
+		$this->model_product_detail= new ProductDetail();
 	}
  	function T_list(){
  		$data = $this->model_order->ListOrder();
@@ -51,9 +54,38 @@ class AdminOrderController{
  		$order_id = $_GET['order_id'];
  		$data_customer = $this->model_order->FindOrder($order_id);
 
- 		$data_order = $this->model_order_detail->FindByIdOrder($order_id);
-
+ 		$data_order_detail = $this->model_order_detail->FindByIdOrder($order_id);
+ 		
  		include_once('view/order/DetailOrder.php');
+ 	}
+ 	function process(){
+ 		$order_id = $_GET['order_id'];
+ 		$data_order_detail = $this->model_order_detail->FindIdOrderNotJoin($order_id);
+
+ 		$order = $this->model_order->find($order_id);
+ 		$data_arr = array();
+ 		
+ 		foreach ($data_order_detail as $key => $value) {
+ 			$data = $this->model_product_detail->FindByProColSiz($value['product_id'],$value['color_id'],$value['size_id']);
+ 		
+ 			
+	 		
+ 		 	$data['quantity'] = $data['quantity'] - $value['quantity_buy'];
+ 		 
+ 			if($data['quantity'] < 0){
+ 				die(setcookie('false','abc',time()+1));
+ 			}
+ 			$data_arr[] = $data;
+ 		}
+ 		
+ 		foreach ($data_arr as $key => $value) {
+ 			$value['updated_at'] = Date('Y-m-d H:i:s');
+ 			$result = $this->model_product_detail->update_quantity($value);
+ 		}
+ 		$order['state'] = 1;
+ 		$update_order = $this->model_order->update($order);
+ 		setcookie('process_success','abc',time()+1);
+ 		header('location: ?role=admin&mod=order&act=T_list');
  	}
 }
 

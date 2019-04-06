@@ -18,8 +18,9 @@ class Order extends model{
 		$query = " SELECT customers.name as customer_name, customers.address as customer_address, 
 					customers.dateofbirth, customers.username, orders.order_id
 					From orders
-					inner join customers on orders.order_id = customers.customer_id
+					inner join customers on orders.customer_id = customers.customer_id
 					where orders.order_id = ".$order_id." ";
+
 		$result = sqlsrv_query($this->conn,$query);
 		$row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC) ;
 		

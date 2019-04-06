@@ -25,6 +25,10 @@
 					<input type="text" class="form-control" name="name" required="required">
 				</div>
 				<div class="form-group">
+					<label for="">User Name</label>
+					<input type="text" class="form-control" name="username" required="required">
+				</div>
+				<div class="form-group">
 					<label for="">Address</label>
 					<input type="text" class="form-control" name="address" required="required">
 				</div>
@@ -40,13 +44,16 @@
 						<?php } ?>
 					</select>
 				</div>
-				<div class="form-group">
-					<label for="">User Name</label>
-					<input type="text" class="form-control" name="username" required="required">
-				</div>
+				
 				<div class="form-group">
 					<label for="">Role</label>
-					<input type="text" class="form-control"  name="role" required="required">
+					<select class="form-control" name="role" >
+						
+						<option value="0">Admin</option>
+						<option value="1">....</option>
+						<option value="2">....</option>
+						
+					</select>
 				</div>
 				<div class="form-group" style="margin-top: 38px;">
 

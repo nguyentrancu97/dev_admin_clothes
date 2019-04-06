@@ -29,44 +29,57 @@ class AdminProductController{
  		$category = $this->model_category->T_list();
  		include_once('view/product/AddProduct.php');
  	}
- 	
+ 	function check_add($data){
+ 		
+ 		$product = $this->model_product->T_list();
+ 		
+ 		foreach ($product as $key => $value) {
+ 			if($value['product_code'] === $data['product_code']){
+ 				return false;
+ 			}
+ 		}
+ 		return true;
+ 	}
  	function store(){
- 		if($_SERVER['REQUEST_METHOD'] == 'POST') {
+ 		$_SESSION['data'] = $_POST;
+ 		$status = $this->check_add($_POST);
+ 		if($status == false){
+ 			setcookie('false','abc',time()+2);
+ 			header('location: ?role=admin&mod=product&act=add');
+ 		}else{
+ 			unset($_SESSION['data']);
  			$status = "";
- 			// print_r($_FILES['img']); 
- 			// die;
- 			// echo "<pre>";
- 			// print_r($_POST);
- 			// print_r($_FILES);
- 			// echo "</pre>";
- 			// die;
-			if($_FILES['img']['error'] !==4){ 
-	       		$target_dir = "public/images/uploads/"; 
-	        	$target_file = $target_dir . basename($_FILES["img"]["name"]);
-	        
-		        if (move_uploaded_file($_FILES["img"]["tmp_name"], $target_file)) {
-		        	$data = array();
-		        	$data = $_POST;
-		        	$data['created_at'] = Date('Y-m-d H:i:s');
-		        	$data['img'] = $_FILES['img']['name'];
-		        	$status = $this->model_product->create($data);
-		        }else{
-		            echo "Sorry, there was an error uploading your file.";
-		        }
-   	 		}else{
-   	 			$data = array();
-		        $data = $_POST;
-		        $data['created_at'] = Date('Y-m-d H:i:s');
-		        $status = $this->model_product->create($data);
-   	 		}
-   	 		if($status){
-   	 			setcookie('true','abc',time()+1);
-   	 			header('Location:?role=admin&mod=product&act=T_list');
-   	 		}else{
-   	 			setcookie('false','abc',time()+1);
-   	 		}
-    	
-		}	
+ 			
+ 			if($_FILES['img']['error'] !==4){ 
+ 				$target_dir = "public/images/uploads/"; 
+ 				$target_file = $target_dir . basename($_FILES["img"]["name"]);
+
+ 				if (move_uploaded_file($_FILES["img"]["tmp_name"], $target_file)) {
+
+ 					$data = $_POST;
+ 					$data['created_at'] = Date('Y-m-d H:i:s');
+ 					$data['img'] = $_FILES['img']['name'];
+ 					$status = $this->model_product->create($data);
+
+ 				}else{
+ 					echo "Sorry, there was an error uploading your file.";
+ 				}
+ 			}else{
+ 				
+ 				$data = $_POST;
+ 				$data['created_at'] = Date('Y-m-d H:i:s');
+ 				$status = $this->model_product->create($data);
+ 			}
+ 			if($status){
+ 				setcookie('true','abc',time()+1);
+ 				unset($_SESSION['data']);
+ 				header('Location:?role=admin&mod=product&act=T_list');
+ 			}else{
+ 				setcookie('false','abc',time()+1);
+ 			}
+
+ 		}
+ 		
  	}
 
  	function ShowEditProduct(){
@@ -78,6 +91,7 @@ class AdminProductController{
  	}
 
  	function update(){
+
  		if($_SERVER['REQUEST_METHOD'] == 'POST') {
  			$status="";
 			if($_FILES['img']['error'] !==4){ 
@@ -89,11 +103,13 @@ class AdminProductController{
 	        	$data = $_POST;
 	        	$data['updated_at'] = Date('Y-m-d H:i:s');
 	        	$data['img'] = $_FILES['img']['name'];
+	        	// var_dump($data);
 	        	$status = $this->model_product->update($data);
 	        	// var_dump($status);
+	        	// die;
 	        }else{
    	 			$data = $_POST; 
-   	 			$data['update_at'] = Date('Y-m-d H:i:s');
+   	 			$data['updated_at'] = Date('Y-m-d H:i:s');
 		        $status = $this->model_product->update($data);
 		    }
 

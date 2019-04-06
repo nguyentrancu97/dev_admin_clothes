@@ -24,10 +24,10 @@
 				<a href="?role=admin&mod=producer&act=add" style="margin-bottom: 20px;" class="btn btn-primary"><i class="fa fa-plus-circle" aria-hidden="true"></i></a>
 				<thead>
 					<tr>
-						<th>Producer ID</th>
+						<th>#</th>
 						<th>Name</th>
 						<th>Fax</th>
-						<th>#</th>
+						<th>Action</th>
 					</tr>
 				</thead>
 				<tbody id="tbody">

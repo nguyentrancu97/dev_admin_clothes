@@ -24,10 +24,10 @@
 				<a href="?role=admin&mod=category&act=add" style="margin-bottom: 20px;" class="btn btn-primary"><i class="fa fa-plus-circle" aria-hidden="true"></i></a>
 				<thead>
 					<tr>
-						<th>Category_id</th>
+						<th>#</th>
 						<th>Parent_id</th>
 						<th>Name</th>
-						<th>#</th>
+						<th>Action</th>
 					</tr>
 				</thead>
 				<tbody id="tbody">

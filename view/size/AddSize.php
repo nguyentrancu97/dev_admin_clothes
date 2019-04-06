@@ -4,7 +4,7 @@
 	<!-- Content Header (Page header) -->
 	<section class="content-header">
 		<h1>
-			Thêm Sản Phẩm
+			Thêm Size
 			<!--  <div class="#kq"></div> -->
 		</h1>
    <!--  <ol class="breadcrumb">
@@ -22,7 +22,10 @@
 			<form action="?role=admin&mod=size&act=store" method="POST" enctype="multipart/form-data" role="form">
 				<div class="form-group">
 					<label for="">Size Name</label>
-					<input type="text" class="form-control" name="name" required="required">
+					<input type="text" class="form-control" name="name" 
+					value="<?php if(isset($_SESSION['data'])){
+						echo($_SESSION['data']['name']);
+					} ?>" required="required">
 				</div>
 				<div class="form-group" style="margin-top: 38px;">
 
@@ -40,6 +43,14 @@
 <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
-<?php include_once('layouts/footer.php'); ?>	
+<?php include_once('layouts/footer.php'); ?>
+<?php if(isset($_COOKIE['false'])){ ?>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			toastr.error('Thêm Thất bại!! Trùng Tên');
+			$("input[name='name']").css("border-color","red");
+		})
+	</script>
+<?php } ?>	
 
  

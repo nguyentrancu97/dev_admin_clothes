@@ -19,6 +19,7 @@ class Product extends model{
 		}
 		return $data;
 	}
+	
 }
 
 

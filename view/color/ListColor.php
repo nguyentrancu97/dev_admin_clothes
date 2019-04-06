@@ -4,7 +4,7 @@
 	<!-- Content Header (Page header) -->
 	<section class="content-header">
 		<h1>
-			Quản lí size
+			Quản lí color
 			<!--  <div class="#kq"></div> -->
 		</h1>
    <!--  <ol class="breadcrumb">
@@ -24,9 +24,9 @@
 				<a href="?role=admin&mod=color&act=add" style="margin-bottom: 20px;" class="btn btn-primary"><i class="fa fa-plus-circle" aria-hidden="true"></i></a>
 				<thead>
 					<tr>
-						<th>ID</th>
-						<th>Name</th>
 						<th>#</th>
+						<th>Name</th>
+						<th>Action</th>
 					</tr>
 				</thead>
 				<tbody id="tbody">

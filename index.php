@@ -1,4 +1,5 @@
 <?php 
+session_start();
 $role = "";
 $mod = "";
 $act = "";
@@ -38,6 +39,9 @@ switch ($role) {
 						break;
 					case 'add':
 						$controller->ShowAddProduct();
+						break;
+					case 'check_add':
+						$controller->check_add();
 						break;
 					case 'store':
 						$controller->store();
@@ -290,6 +294,9 @@ switch ($role) {
 						break;
 					case 'detail':
 						$controller->detail();
+						break;
+					case 'process':
+						$controller->process();
 						break;
 					default:
 						# code...

@@ -24,11 +24,11 @@
 				<a href="?role=admin&mod=branch&act=add" style="margin-bottom: 20px;" class="btn btn-primary"><i class="fa fa-plus-circle" aria-hidden="true"></i></a>
 				<thead>
 					<tr>
-						<th>Branch_id</th>
+						<th>#</th>
 						<th>Name</th>
 						<th>Address</th>
 						<th>Fax</th>
-						<th>#</th>
+						<th>Action</th>
 					</tr>
 				</thead>
 				<tbody id="tbody">
@@ -38,6 +38,7 @@
 							<td><?= $row['branch_id']?></td>
 							<td><?= $row['name']?></td>
 							<td><?= $row['address']?></td>
+							<td><?= $row['fax']?></td>
 							<td>
 								<a href="?role=admin&mod=branch&act=edit&branch_id=<?php echo $row['branch_id'] ?>" class="btn btn-success"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
 								<a href="?role=admin&mod=branch&act=delete&branch_id=<?php echo $row['branch_id'] ?>" class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></a>

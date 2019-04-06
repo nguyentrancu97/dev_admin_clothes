@@ -24,12 +24,12 @@
 				<a href="?role=admin&mod=product&act=add_size_color&product_id=<?php echo $product_id ?>" style="margin-bottom: 20px;" class="btn btn-primary"><i class="fa fa-plus-circle" aria-hidden="true"></i></a>
 				<thead>
 					<tr>
-						<th>Id</th>
+						<th>#</th>
 						<th>Product_name</th>
 						<th>Size_name</th>
 						<th>Color_name</th>
 						<th>Quantity</th>
-						<th>#</th>
+						<th>Action</th>
 					</tr>
 				</thead>
 				<tbody id="tbody">

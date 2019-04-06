@@ -24,9 +24,9 @@
 				<a href="?role=admin&mod=size&act=add" style="margin-bottom: 20px;" class="btn btn-primary"><i class="fa fa-plus-circle" aria-hidden="true"></i></a>
 				<thead>
 					<tr>
-						<th>ID</th>
-						<th>Name</th>
 						<th>#</th>
+						<th>Name</th>
+						<th>Action</th>
 					</tr>
 				</thead>
 				<tbody id="tbody">

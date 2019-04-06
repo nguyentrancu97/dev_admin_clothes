@@ -24,13 +24,13 @@
 				<a href="?role=admin&mod=customer&act=add" style="margin-bottom: 20px;" class="btn btn-primary"><i class="fa fa-plus-circle" aria-hidden="true"></i></a>
 				<thead>
 					<tr>
-						<th>Customer_id</th>
+						<th>#</th>
 						<th>Name</th>
 						<th>Address</th>
 						<th>Date Of Birth</th>
 						<th>Username</th>
 					
-						<th>#</th>
+						<th>Action</th>
 					</tr>
 				</thead>
 				<tbody id="tbody">

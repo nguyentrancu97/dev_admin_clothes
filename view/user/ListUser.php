@@ -24,14 +24,15 @@
 				<a href="?role=admin&mod=user&act=add" style="margin-bottom: 20px;" class="btn btn-primary"><i class="fa fa-plus-circle" aria-hidden="true"></i></a>
 				<thead>
 					<tr>
-						<th>User_id</th>
+						<th>#</th>
 						<th>Name</th>
+						<th>UserName</th>
 						<th>Address</th>
 						<th>Date Of Birth</th>
 						<th>Branch ID</th>
-						<th>UserName</th>
+						
 						<th>Role</th>
-						<th>#</th>
+						<th>Action</th>
 					</tr>
 				</thead>
 				<tbody id="tbody">
@@ -40,11 +41,24 @@
 						<tr>
 							<td><?= $row['user_id']?></td>
 							<td><?= $row['name']?></td>
+							<td><?= $row['username']?></td>		
 							<td><?= $row['address']?></td>
 							<td><?= $row['dateofbirth'] ?></td>
-							<td><?= $row['username']?></td>
-							<td><?= $row['branch_id']?></td>
-							<td><?= $row['role']?></td>
+							<td><?= $row['branch_id']?></td>					
+							<td><?php  switch ($row['role']) {
+								case '0':
+									echo "Admin";
+									break;
+								case '1':
+									echo "...";
+									break;
+								case '2':
+									echo "...";
+									break;	
+								default:
+									# code..
+									break;
+							} ?></td>
 							<td>
 								<a href="?role=admin&mod=user&act=edit&user_id=<?php echo $row['user_id'] ?>" class="btn btn-success"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
 								<a href="?role=admin&mod=user&act=delete&user_id=<?php echo $row['user_id'] ?>" class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
