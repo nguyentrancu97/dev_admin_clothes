@@ -19,16 +19,23 @@
 	<!-- Default box -->
 	<div class="box">
 		<div class="box-header with-border" id="table">
-			<form action="?role=admin&mod=product&act=store_size_color" method="POST" enctype="multipart/form-data" role="form">
+			<form action="?role=admin&mod=product&act=store_size_color" method="POST" enctype="multipart/form-dataSC" role="form">
 				<div class="form-group">
 					<label for="">Product ID</label>
-					<input type="text" class="form-control" value="<?php echo $product_id ?>" name="product_id" required="required" readonly>
+					<input type="hidden" class="form-control" value="<?php echo $product_id ?>" name="product_id" required="required" readonly>
 				</div>
 				<div class="form-group">
 					<label for="">Size</label>
 					<select class="form-control" name="size_id" >
 						<?php foreach ($size as $value) { ?>
-							<option value="<?= $value['id'] ?>"><?= $value['name'] ?></option>
+							<option value="<?= $value['id'] ?>"
+
+								value="<?= $value['size_id'] ?>"
+
+								<?php if(isset($_SESSION['dataSC']) && $value['id'] == $_SESSION['dataSC']['size_id']){?>
+									selected
+								<?php } ?>
+								><?= $value['name'] ?></option>
 						<?php } ?>
 					</select>
 				</div>
@@ -36,13 +43,20 @@
 					<label for="">Color</label>
 					<select class="form-control" name="color_id" >
 						<?php foreach ($color as $value) { ?>
-							<option value="<?= $value['id'] ?>"><?= $value['name'] ?></option>
+							<option value="<?= $value['id'] ?>"
+								value="<?= $value['color_id'] ?>"
+								
+								<?php if(isset($_SESSION['dataSC']) && $value['id'] == $_SESSION['dataSC']['color_id']){?>
+									selected
+								<?php } ?>
+
+								><?= $value['name'] ?></option>
 						<?php } ?>
 					</select>
 				</div>
 				<div class="form-group">
 					<label for="">Quantity</label>
-					<input type="text" autocomplete="off" class="form-control" name="quantity"  required="required">
+					<input type="text" autocomplete="off" class="form-control" name="quantity" value="<?php if(isset($_SESSION['dataSC'])) echo $_SESSION['dataSC']['quantity'] ?>" required="required">
 				</div>
 				<div class="form-group" style="margin-top: 38px;">
 
@@ -61,5 +75,13 @@
 </div>
 <!-- /.content-wrapper -->
 <?php include_once('layouts/footer.php'); ?>	
-
+<?php if(isset($_COOKIE['Trung'])){ ?>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			toastr.error('Thêm Thất bại!! Trùng');
+			$("select[name='color_id']").css("border-color","red");
+			$("select[name='size_id']").css("border-color","red");
+		})
+	</script>
+<?php } ?>
  

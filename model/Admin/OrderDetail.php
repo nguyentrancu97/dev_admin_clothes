@@ -5,14 +5,15 @@ class OrderDetail extends model{
 	var $primary_key = "id";
 
 	function FindByIdOrder($order_id){
-		$query = "SELECT orders.address_receive, orders.phone_receive,orders.state,
-		products.name as product_name, products.price, colors.name as color_name, sizes.name as size_name, order_details.quantity_buy
-		FROM order_details
-		inner join colors on order_details.color_id = colors.id
-		inner join sizes on order_details.size_id = sizes.id
-		inner join orders on order_details.order_id = orders.order_id
-		inner join products on order_details.product_id = products.product_id
-		where order_details.order_id = ".$order_id." ";
+		$query = "SELECT orders.address_receive, orders.phone_receive, orders.status,
+		order_details.quantity_buy,order_details.price_buy,
+		sizes.name as size_name, colors.name as color_name, products.name as product_name, branchs.name as branch_name
+		from product_details, order_details, sizes, colors, products, orders, branchs
+		where order_details.order_id = '".$order_id."' 
+		AND order_details.product_detail_id = product_details.id
+		AND product_details.color_id = colors.id
+		AND product_details.size_id = sizes.id AND product_details.branch_id = branchs.branch_id
+		AND product_details.product_id = products.product_id";
 
 		
 		$result = sqlsrv_query($this->conn,$query);

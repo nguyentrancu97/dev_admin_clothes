@@ -19,18 +19,8 @@ class ProductDetail extends model{
 		}
 		return $data;
 	}
-	function update_quantity($data){
-		$query = "UPDATE product_details set quantity = '".$data['quantity']."', updated_at = '".$data['updated_at']."' ";
-		$result = sqlsrv_query($this->conn, $query);
-	}
-	function FindByProColSiz($product_id,$color_id,$size_id){
-		$query = " SELECT * FROM product_details where product_id = '".$product_id."' AND color_id = '".$color_id."' AND size_id = '".$size_id."' ";
-
-		$result = sqlsrv_query($this->conn, $query);
-		$data = array();
-		$row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC) ;
-		return $row;
-	}
+	
+	
 }
 
  ?>

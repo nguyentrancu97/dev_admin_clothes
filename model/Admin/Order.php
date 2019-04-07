@@ -4,9 +4,11 @@ class Order extends model{
 	var $table = 'orders';
 	var $primary_key = 'order_id';
 	function ListOrder(){
-		$query = "SELECT * , customers.name as customer_name
-		FROM orders
+		$query = "SELECT orders.order_id,orders.address_receive,orders.created_at,orders.phone_receive,orders.status , 
+		customers.name as customer_name 
+		FROM orders 
 		inner join customers on orders.customer_id = customers.customer_id";
+		
 		$result = sqlsrv_query($this->conn,$query);
 		$data = array();
 		while ($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {

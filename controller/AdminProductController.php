@@ -173,13 +173,31 @@ class AdminProductController{
  		$size = $this->model_size->T_list();
  		include_once('view/product/AddSizeColor.php');
  	}
- 	function store_size_color(){
- 		$data = $_POST;
- 		$data['created_at'] = Date('Y-m-d H:i:s');
- 		$result = $this->model_product_detail->create($data);
- 		if($result){
- 			header('location: ?role=admin&mod=product&act=list_size_color&product_id='.$data['product_id'].' ');
+ 	function check_add_size_color($data){
+ 		$data_size_color = $this->model_product_detail->T_list();
+ 		foreach ($data_size_color as $key => $value) {
+ 			if($value['product_id'] == $data['product_id'] && $value['color_id'] == $data['color_id'] && $value['size_id'] == $data['size_id']){
+ 				return false;
+ 			}
  		}
+ 		return true;
+ 	}
+ 	function store_size_color(){
+ 		$result = $this->check_add_size_color($_POST);
+ 		if($result){
+ 			unset($_SESSION['dataSC']);
+ 			$data = $_POST;
+	 		$data['created_at'] = Date('Y-m-d H:i:s');
+	 		$result = $this->model_product_detail->create($data);
+	 		if($result){
+	 			header('location: ?role=admin&mod=product&act=list_size_color&product_id='.$data['product_id'].' ');
+	 		}
+ 		}else{
+ 			$_SESSION['dataSC'] = $_POST;
+ 			setcookie("Trung","abc",time()+1);
+ 			header('location: ?role=admin&mod=product&act=add_size_color&product_id='.$_POST['product_id'].' ');
+ 		}
+ 	
  	}
  	function delete_size_color(){
  		$id = $_GET['id'];

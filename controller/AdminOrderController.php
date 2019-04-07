@@ -13,6 +13,7 @@ class AdminOrderController{
 	}
  	function T_list(){
  		$data = $this->model_order->ListOrder();
+ 		
  		// echo "<pre>";
  		// print_r($data);
  		// die;
@@ -66,8 +67,7 @@ class AdminOrderController{
  		$data_arr = array();
  		
  		foreach ($data_order_detail as $key => $value) {
- 			$data = $this->model_product_detail->FindByProColSiz($value['product_id'],$value['color_id'],$value['size_id']);
- 		
+ 			$data = $this->model_product_detail->find($value['product_detail_id']);
  			
 	 		
  		 	$data['quantity'] = $data['quantity'] - $value['quantity_buy'];
@@ -78,11 +78,11 @@ class AdminOrderController{
  			$data_arr[] = $data;
  		}
  		
- 		foreach ($data_arr as $key => $value) {
- 			$value['updated_at'] = Date('Y-m-d H:i:s');
- 			$result = $this->model_product_detail->update_quantity($value);
+ 		foreach ($data_arr as $key => $data) {
+ 			$data['updated_at'] = Date('Y-m-d H:i:s');
+ 			$result = $this->model_product_detail->update($data);
  		}
- 		$order['state'] = 1;
+ 		$order['status'] = 1;
  		$update_order = $this->model_order->update($order);
  		setcookie('process_success','abc',time()+1);
  		header('location: ?role=admin&mod=order&act=T_list');

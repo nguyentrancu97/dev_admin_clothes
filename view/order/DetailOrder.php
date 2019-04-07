@@ -73,7 +73,7 @@
 						<tbody>
 							<?php $tong = 0 ;
 							foreach ($data_order_detail as $key => $value){
-								$tong += $value['price'] * $value['quantity_buy'];
+								$tong += $value['price_buy'] * $value['quantity_buy'];
 							?>
 
 								<tr>
@@ -81,7 +81,7 @@
 									<td><?php echo $value['size_name'] ?></td>
 									<td><?php echo $value['color_name'] ?></td>
 									<td><?php echo $value['quantity_buy'] ?></td>
-									<td><?php echo $value['price'] ?></td>
+									<td><?php echo $value['price_buy'] ?></td>
 								</tr>
 							<?php } ?>
 							
@@ -93,7 +93,7 @@
 
 				</div>
 			</div>
-			<?php if($data_order_detail[0]['state'] == 0){ 	?>
+			<?php if($data_order_detail[0]['status'] == 0){ 	?>
 
 			<a class="btn btn-success" href="?role=admin&mod=order&act=process&order_id=<?php echo 
 			$order_id ?>">Xử lí</a>
