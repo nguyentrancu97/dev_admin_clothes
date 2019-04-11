@@ -1,6 +1,6 @@
 <?php 
 session_start();
-
+// session_destroy();
 $role = "";
 $mod = "";
 $act = "";
@@ -10,11 +10,23 @@ if(isset($_GET['mod']) && isset($_GET['act']) && isset($_GET['role'])){
 	$mod = $_GET['mod'];
 	$act = $_GET['act'];
 }else{
-	$role = "admin";
-	$mod = "dashboard";
-	$act = "dashboard";
+	
+	$act = "login";
+	
 }
 
+
+// switch ($act) {
+// 	case 'login':
+// 		$controller->Showlogin();
+// 		break;
+// 	case 'check_login':
+// 		$controller->checklogin();
+// 		break;
+// 	default:
+// 		# code...
+// 		break;
+// }
 switch ($role) {
 	case 'admin':
 		switch ($mod) {
@@ -310,7 +322,82 @@ switch ($role) {
 
 		}
 		break;
-	
+	case 'employee':
+		switch ($mod) {
+			case 'sale':
+				include_once('controller/AdminSaleController.php');
+				$controller = new AdminSaleController();
+				switch ($act) {
+					case 'list_customer':
+						if(isset($_SESSION['customer'])){
+							$controller->list_product();
+						}else{
+							$controller->list_customer();
+						}
+						
+						break;
+					case 'list_product':
+						$controller->list_product();
+						break;
+					case 'buy':
+						$controller->buy();
+						break;
+					case 'cart':
+						$controller->cart();
+						break;
+					case 'add2cart':
+						$controller->add2cart();
+						break;
+					case 'reduce':
+						$controller->reduce();
+						break;
+					case 'removeCart':
+						$controller->removeCart();
+						break;
+					case 'delete_cart':
+						$controller->delete_cart();
+						break;
+					case 'check_out':
+						$controller->check_out();
+						break;
+					default:
+						# code...
+						break;
+				}
+				break;
+			
+			default:
+				# code...
+				break;
+		}
+		break;
+	case '':
+		switch ($mod) {
+			case '':
+				include_once("controller/LoginController.php");
+				$controller = new LoginController();
+				switch ($act) {
+					
+					case 'login':
+						$controller->Showlogin();
+						break;
+					case 'check_login':
+						$controller->checklogin();
+						break;
+					case 'logout':
+						$controller->logout();
+						break;
+					default:
+						# code...
+						break;
+				}
+				break;
+			
+			default:
+				# code...
+				break;
+		}
+		break;
 	default:
 		# code...
 		break;

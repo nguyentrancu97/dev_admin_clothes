@@ -23,14 +23,6 @@ class AdminCategoryController{
  	}
  	function edit(){
  		$id = $_GET['id'];
- 		$category = $this->model_category->T_list();
- 		$parent=array();
- 		foreach ($category as $key => $value) {
- 			if($value['parent_id'] == 0){
- 				$parent[] = $value;
- 			}
- 		}
- 		
  		$data = $this->model_category->find($id);
  		include_once('view/category/EditCategory.php');
  	}

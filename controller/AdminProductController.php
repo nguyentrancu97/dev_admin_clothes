@@ -21,6 +21,7 @@ class AdminProductController{
 		$this->model_color = new Color();		
 	} 	
 	function T_list(){
+		unset($_SESSION['dataSC']);
 		$data = $this->model_product->ListProduct();
  		include_once('view/product/ListProduct.php');
  	}
@@ -136,9 +137,10 @@ class AdminProductController{
  	}
  	function update_size_color(){
  		$data = $_POST;
+ 		
  		$data['updated_at'] = Date('Y-m-d H:i:s');
  		$status = $this->model_product_detail->update($data);
- 		if($status){
+ 		if(!$status){
  			header('location: ?role=admin&mod=product&act=list_size_color&product_id='.$data['product_id'].' ');
  		}else{
  			setcookie('false','abc',time()+1);
@@ -184,14 +186,15 @@ class AdminProductController{
  	}
  	function store_size_color(){
  		$result = $this->check_add_size_color($_POST);
+ 		
  		if($result){
  			unset($_SESSION['dataSC']);
  			$data = $_POST;
 	 		$data['created_at'] = Date('Y-m-d H:i:s');
 	 		$result = $this->model_product_detail->create($data);
-	 		if($result){
-	 			header('location: ?role=admin&mod=product&act=list_size_color&product_id='.$data['product_id'].' ');
-	 		}
+
+	 		header('location: ?role=admin&mod=product&act=list_size_color&product_id='.$data['product_id'].' ');
+	 		
  		}else{
  			$_SESSION['dataSC'] = $_POST;
  			setcookie("Trung","abc",time()+1);

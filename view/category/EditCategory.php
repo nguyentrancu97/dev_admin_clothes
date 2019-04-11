@@ -28,21 +28,7 @@
 					<label for="">Category Name</label>
 					<input type="text" class="form-control" value="<?= $data['name'] ?>" name="name" required="required">
 				</div>
-				<div class="form-group">
-					<label for="">Parent Name</label>
-					<select class="form-control" name="parent_id" >
-						<option value="0">Parent</option>
-						<?php foreach ($parent as $value) { ?>
-							<option 
-							<?php if($value['category_id']==$data['parent_id'] ){ ?>
-								selected
-							<?php } ?>
-							value="<?= $value['category_id'] ?>"><?= $value['name'] ?>
-						<?php } ?>	
-						</option>
-					</select>
-
-				</div>
+				
 				<div class="form-group" style="margin-top: 38px;">
 
 					<button type="submit" class="btn btn-primary">Edit</button>

@@ -50,8 +50,8 @@
 					<select class="form-control" name="role" >
 						
 						<option value="0">Admin</option>
-						<option value="1">....</option>
-						<option value="2">....</option>
+						<option value="1">Employee</option>
+						<option value="2">Shipper</option>
 						
 					</select>
 				</div>

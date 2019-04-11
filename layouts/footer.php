@@ -215,13 +215,32 @@
 <!-- AdminLTE for demo purposes -->
 <script src="public/dist/js/demo.js"></script>
 
-<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+<!-- DataTables -->
+<script src="public/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="public/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+
+<!-- <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script> -->
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/datepicker/0.6.5/datepicker.js"></script>
 <script>
   $(document).ready(function () {
-    $('.sidebar-menu').tree()
+    $('.sidebar-menu').tree();
+    // $('.mytable').DataTable();
+  })
+
+</script>
+<script>
+  $(function () {
+  
+    $('.mytable').DataTable({
+      'paging'      : true,
+      'lengthChange': false,
+      'searching'   : false,
+      'ordering'    : true,
+      'info'        : true,
+      'autoWidth'   : false
+    })
   })
 </script>
 </body>

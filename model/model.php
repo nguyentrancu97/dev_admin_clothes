@@ -60,7 +60,7 @@ class model{
 		$sql = trim($sql,',');	
 
 		$query = "UPDATE ".$this->table." SET ".$sql." WHERE ".$this->primary_key." = '".$data[$this->primary_key]."' ";
-		// echo "$query";
+		// echo $query;
 		// die;
     	$status = sqlsrv_query($this->conn, $query);
   

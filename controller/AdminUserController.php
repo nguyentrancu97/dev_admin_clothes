@@ -18,28 +18,27 @@ class AdminUserController{
  	}
  	function store(){
  		$data = $_POST;
- 		// $date = Date('Y-m-d H:i:s');
- 		// echo "$date";
- 		// die;
+ 		
  		$data['created_at'] = Date('Y-m-d H:i:s');
 
  		$status = $this->model_user->create($data);
- 		if($status){
+ 		if(!$status){
  			header('location: ?role=admin&mod=user&act=T_list');
  		}
  	}
  	function edit(){
  		$id = $_GET['user_id'];
  		$data = $this->model_user->find($id);
- 		$branch = $this->model_branch->T_list();
+ 	
  		include_once('view/user/EditUser.php');
  	}
  	function update(){
  		$data = $_POST;
  		
- 		$data['update_at'] = Date('Y-m-d H:i:s');
+ 		$data['updated_at'] = Date('Y-m-d H:i:s');
  		$s = $this->model_user->update($data);
- 		if($s){
+ 		
+ 		if(!$s){
  			header('location: ?role=admin&mod=user&act=T_list');
  		}
  	}

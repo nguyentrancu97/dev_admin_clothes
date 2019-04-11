@@ -15,9 +15,9 @@ class AdminSizeController{
  	}
  	function check_add($data){
  		
- 		$list_size = $_SESSION['list_size'];
+ 		$list_size = $_SESSION['list'];
  		
- 		foreach ($list_size as $key => $value) {
+ 		foreach ($list as $key => $value) {
  			if($value['name'] === $data['name']){
  				return false;
  			}

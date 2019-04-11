@@ -18,7 +18,7 @@
 <section class="content">
 	<!-- Default box -->
 	<div class="box">
-		<div class="box-header with-border" id="table">
+		<div class="box-header with-border" >
 			<form action="?role=admin&mod=product&act=store_size_color" method="POST" enctype="multipart/form-dataSC" role="form">
 				<div class="form-group">
 					<label for="">Product ID</label>
@@ -29,8 +29,6 @@
 					<select class="form-control" name="size_id" >
 						<?php foreach ($size as $value) { ?>
 							<option value="<?= $value['id'] ?>"
-
-								value="<?= $value['size_id'] ?>"
 
 								<?php if(isset($_SESSION['dataSC']) && $value['id'] == $_SESSION['dataSC']['size_id']){?>
 									selected
@@ -44,8 +42,7 @@
 					<select class="form-control" name="color_id" >
 						<?php foreach ($color as $value) { ?>
 							<option value="<?= $value['id'] ?>"
-								value="<?= $value['color_id'] ?>"
-								
+
 								<?php if(isset($_SESSION['dataSC']) && $value['id'] == $_SESSION['dataSC']['color_id']){?>
 									selected
 								<?php } ?>

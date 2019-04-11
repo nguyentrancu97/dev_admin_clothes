@@ -11,7 +11,7 @@ class Product extends model{
 		FROM products
 		inner join producers on products.producer_id = producers.producer_id
 		inner join categories on products.category_id = categories.category_id";
-
+		
 		$result = sqlsrv_query($this->conn,$query);
 		$data = array();
 		while ($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {

@@ -18,9 +18,9 @@
 <section class="content">
 	<!-- Default box -->
 	<div class="box">
-		<div class="box-header with-border" id="table">
+		<div class="box-header with-border " >
 
-			<table id="mytable" class="table table-hover " >
+			<table class="table table-bordered table-striped mytable" >
 				<a href="?role=admin&mod=user&act=add" style="margin-bottom: 20px;" class="btn btn-primary"><i class="fa fa-plus-circle" aria-hidden="true"></i></a>
 				<thead>
 					<tr>
@@ -50,10 +50,10 @@
 									echo "Admin";
 									break;
 								case '1':
-									echo "...";
+									echo "Employee";
 									break;
 								case '2':
-									echo "...";
+									echo "Shipper";
 									break;	
 								default:
 									# code..

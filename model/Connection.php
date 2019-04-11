@@ -4,7 +4,7 @@ class Connection{
 	function getConnect(){
  		$serverName = "TRANDUCCU\SQLTRANCU"; //serverName\instanceName
  		$connectionInfo = array( 
- 			"Database"=>"ShopClothes", 
+ 			"Database"=>"Tram_ND", 
  			"UID"=>"sa", 
  			"PWD"=>"123456",
  			'CharacterSet' => 'UTF-8',

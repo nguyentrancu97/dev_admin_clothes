@@ -4,7 +4,7 @@
 	<!-- Content Header (Page header) -->
 	<section class="content-header">
 		<h1>
-			Quản lí sản phẩm
+			Sale
 			<!--  <div class="#kq"></div> -->
 		</h1>
    <!--  <ol class="breadcrumb">
@@ -18,37 +18,53 @@
 <section class="content">
 	<!-- Default box -->
 	<div class="box">
-		<div class="box-header with-border ">
+		<div class="box-header with-border">
+			<div>
+				
+				<?php if(isset($_SESSION['customer'])){ ?>
+				<h3>THÔNG TIN KHÁCH HÀNG</h3>
+				<ul style="list-style: none;">
+					<li>Code: <?= $_SESSION['customer']['customer_id'] ?></li>
+					<li>Name: <?=$_SESSION['customer']['name'] ?></li>
+					<li>Address: <?= $_SESSION['customer']['address'] ?> </li>
+					<li>Date Of birth: <?= $_SESSION['customer']['dateofbirth'] ?> </li>
 
+				</ul>
+				<?php }else{ ?>
+					<p>Không có thông tin khách hàng</p>
+				<?php } ?>
+
+			</div>
+
+			<h3>DANH SÁCH SẢN PHẨM</h3>
 			<table class="table table-bordered table-striped mytable" >
-				<a href="?role=admin&mod=product&act=add" style="margin-bottom: 20px;" class="btn btn-primary"><i class="fa fa-plus-circle" aria-hidden="true"></i></a>
+
 				<thead>
 					<tr>
-						<th>#</th>
+
 						<th>Product Code</th>
 						<th>Name</th>
 						<th>Producer Name</th>
 						<th>Category Name</th>
-						<th>Description</th>
+
 						<th>Price</th>
 						<th>Action</th>
 					</tr>
 				</thead>
-				<tbody id="tbody">
+				<tbody>
 					<?php 
 					foreach ($data as $row) {?>
 						<tr>
-							<td><?= $row['product_id']?></td>
+
 							<td><?= $row['product_code']?></td>
 							<td><?= $row['product_name']?></td>
-							<td><?= $row['producer_name']?></td>
+							<td><?= $row['producer_name']?></td> 
 							<td><?= $row['category_name']?></td>
-							<td><?= $row['description']?></td>
+
 							<td><?= $row['price']?> đ</td>
 							<td>
-								<a href="?role=admin&mod=product&act=detail&id=<?php echo $row['product_id'] ?>" class="btn btn-info"><i class="fa fa-eye" aria-hidden="true"></i></a>
-								<a href="?role=admin&mod=product&act=edit&id=<?php echo $row['product_id'] ?>" class="btn btn-success"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-								<a href="?role=admin&mod=product&act=delete&id=<?php echo $row['product_id'] ?>" class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+								<a href="?role=employee&mod=sale&act=buy&product_id=<?php echo $row['product_id'] ?>" class="btn btn-info"><i class="fa fa-cart-plus" aria-hidden="true"></i></a>
+
 
 
 							</td>
@@ -61,6 +77,7 @@
 
 				</tbody>
 			</table>
+
 		</div>
 
 	</div>

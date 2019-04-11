@@ -36,23 +36,22 @@
 					<label for="">DateOfBirth</label>
 					<input type="date" class="form-control" value="<?= $data['dateofbirth'] ?>" name="dateofbirth" required="required">
 				</div>
-				<div class="form-group">
-					<label for="">Brand</label>
-					<select class="form-control" name="branch_id" >
-						<?php foreach ($branch as $value) { ?>
-							<option <?php if($value['branch_id'] == $data['branch_id']){?> selected <?php } ?> value="<?= $value['branch_id'] ?>"><?= $value['name'] ?></option>
-						<?php } ?>
-					</select>
-				</div>
+				
 				<div class="form-group">
 					<label for="">User Name</label>
 					<input type="text" class="form-control" value="<?= $data['username'] ?>" name="username" required="required">
 				</div>
+				
 				<div class="form-group">
 					<label for="">Role</label>
-					<input type="text" class="form-control" value="<?= $data['role'] ?>" name="role" required="required">
+					<select class="form-control" name="role" >
+						
+						<option value="0" <?php if($data['role'] == 0){ ?> selected <?php } ?> >Admin</option>
+						<option value="1" <?php if($data['role'] == 1){ ?> selected <?php } ?> >Employee</option>
+						<option value="2" <?php if($data['role'] == 2){ ?> selected <?php } ?> >Shipper</option>
+						
+					</select>
 				</div>
-				
 				<div class="form-group" style="margin-top: 38px;">
 
 					<button type="submit" class="btn btn-primary">Edit</button>

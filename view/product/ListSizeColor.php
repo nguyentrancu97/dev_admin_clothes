@@ -18,9 +18,9 @@
 <section class="content">
 	<!-- Default box -->
 	<div class="box">
-		<div class="box-header with-border" id="table">
+		<div class="box-header with-border " >
 
-			<table id="mytable" class="table table-hover " >
+			<table class="table table-bordered table-striped mytable" >
 				<a href="?role=admin&mod=product&act=add_size_color&product_id=<?php echo $product_id ?>" style="margin-bottom: 20px;" class="btn btn-primary"><i class="fa fa-plus-circle" aria-hidden="true"></i></a>
 				<thead>
 					<tr>

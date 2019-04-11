@@ -18,14 +18,14 @@
 <section class="content">
 	<!-- Default box -->
 	<div class="box">
-		<div class="box-header with-border" id="table">
+		<div class="box-header with-border ">
 
-			<table id="mytable" class="table table-hover " >
+			<table  class="table table-bordered table-striped mytable" >
 				<a href="?role=admin&mod=category&act=add" style="margin-bottom: 20px;" class="btn btn-primary"><i class="fa fa-plus-circle" aria-hidden="true"></i></a>
 				<thead>
 					<tr>
 						<th>#</th>
-						<th>Parent_id</th>
+					
 						<th>Name</th>
 						<th>Action</th>
 					</tr>
@@ -35,7 +35,7 @@
 					foreach ($data as $row) {?>
 						<tr>
 							<td><?= $row['category_id']?></td>
-							<td><?= $row['parent_id']?></td>
+							
 							<td><?= $row['name']?></td>
 							<td>
 								<a href="?role=admin&mod=category&act=edit&id=<?php echo $row['category_id'] ?>" class="btn btn-success"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
