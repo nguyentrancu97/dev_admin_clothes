@@ -71,7 +71,9 @@ class AdminOrderController{
  		$order_code = $order['order_code'];
 
  		$data_order_detail = $this->model_order_detail->FindIdOrderNotJoin($order_code);
-
+ 		// echo "<pre>";
+ 		// print_r($data_order_detail);
+ 		// die;
  		$data_arr = array();
  		
  		foreach ($data_order_detail as $key => $value) {

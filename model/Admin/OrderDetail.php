@@ -24,8 +24,10 @@ class OrderDetail extends model{
 		return $data;
 	}
 	function FindIdOrderNotJoin($order_code){
-		$query = " SELECT * From order_details where order_code = ".$order_code." ";
+		$query = " SELECT * From order_details where order_code = '".$order_code."' ";
+	
 		$result = sqlsrv_query($this->conn, $query);
+		$data = array();
 		while ($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
 			$data[] = $row;
 		}

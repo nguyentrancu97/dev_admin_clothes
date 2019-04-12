@@ -95,6 +95,9 @@ class AdminSaleController{
 			}else{
 				$_SESSION['cart'][$data['product_id']] = $data;
 			}
+			// echo "<pre>";
+			// print_r($_SESSION['cart']);
+			// die;
 			setcookie('true','abc',time()+1);
 			header('location: ?role=employee&mod=sale&act=list_product');
 		}
@@ -177,6 +180,7 @@ class AdminSaleController{
 				$data_order = array();
 				$data_order['order_code'] = '4'. time();
 				$data_order['customer_id'] = 4;
+				$data_order['branch_id'] = $_SESSION['isLogin']['branch_id'];
 				$data_order['status'] = 1;
 				$data_order['created_at'] = Date('Y-m-d H:i:s');
 
