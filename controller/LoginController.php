@@ -17,7 +17,8 @@ class LoginController
 
 		$status = $this->model_login->checklogin($data);
 		$_SESSION['isLogin'] = $status;
-
+		// var_dump($_SESSION['isLogin']);
+		// die;
 		if($_SESSION['isLogin']){
 			header('Location: index.php?role=admin&mod=dashboard&act=dashboard');
 		}else{

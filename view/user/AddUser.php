@@ -36,22 +36,40 @@
 					<label for="">DateOfBirth</label>
 					<input type="date" class="form-control" name="dateofbirth" required="required">
 				</div>
+				<?php if(isset($_SESSION['isLogin']) && $_SESSION['isLogin']['role'] == 0){ ?>
+					<div class="form-group">
+						<label for="">Brand</label>
+						<select class="form-control" name="branch_id" >
+							<?php foreach ($branch as $value) { ?>
+								<option value="<?= $value['branch_id'] ?>"><?= $value['name'] ?></option>
+							<?php } ?>
+						</select>
+					</div>
+				<?php }else{ ?>
 				<div class="form-group">
 					<label for="">Brand</label>
 					<select class="form-control" name="branch_id" >
 						<?php foreach ($branch as $value) { ?>
-							<option value="<?= $value['branch_id'] ?>"><?= $value['name'] ?></option>
-						<?php } ?>
+									<option 
+									<?php if($value['branch_id'] == $_SESSION['isLogin']['branch_id']){?> 
+										selected 
+									<?php }else{?>
+										disabled="disabled"
+									<?php } ?> 
+									value="<?= $value['branch_id'] ?>"><?= $value['name'] ?></option>
+								<?php } ?>
 					</select>
 				</div>
+				<?php } ?>
 				
 				<div class="form-group">
 					<label for="">Role</label>
 					<select class="form-control" name="role" >
-						
-						<option value="0">Admin</option>
-						<option value="1">Employee</option>
-						<option value="2">Shipper</option>
+						<?php if(isset($_SESSION['isLogin']) && $_SESSION['isLogin']['role'] == 0){ ?>
+						<option value="0">System Admin</option>
+					<?php } ?>
+						<option value="1">Admin</option>
+						<option value="2">Employee</option>
 						
 					</select>
 				</div>

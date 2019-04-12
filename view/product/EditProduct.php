@@ -67,8 +67,9 @@
 					<input type="text" class="form-control" value="<?= $row['price'] ?>" name="price"  required="required">
 				</div>
 				<div class="form-group" style="margin-top: 38px;">
-
+					<?php if(isset($_SESSION['isLogin']) && $_SESSION['isLogin']['role'] == 0){ ?>
 					<button type="submit" class="btn btn-primary">Edit</button>
+					<?php } ?>
 				</div>
 
 

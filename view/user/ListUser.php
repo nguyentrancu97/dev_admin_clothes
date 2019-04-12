@@ -47,13 +47,13 @@
 							<td><?= $row['branch_id']?></td>					
 							<td><?php  switch ($row['role']) {
 								case '0':
-									echo "Admin";
+									echo "System Admin";
 									break;
 								case '1':
-									echo "Employee";
+									echo "Admin";
 									break;
 								case '2':
-									echo "Shipper";
+									echo "Employee";
 									break;	
 								default:
 									# code..

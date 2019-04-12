@@ -36,14 +36,20 @@
 						</div>
 
 					</div>
-					<div class="col-xs-6">
+					<div class="col-xs-6">						
 						
-
 						<div class="form-group">
 							<label for="">Size</label>
 							<select class="form-control" name="size_id" >
+
 								<?php foreach ($size as $value) { ?>
-									<option <?php if($value['id'] == $row['size_id']){?> selected <?php } ?> value="<?= $value['id'] ?>"><?= $value['name'] ?></option>
+									<option 
+									<?php if($value['id'] == $row['size_id']){?> 
+										selected 
+									<?php }else{?>
+										disabled="disabled"
+									<?php } ?> 
+									value="<?= $value['id'] ?>"><?= $value['name'] ?></option>
 								<?php } ?>
 							</select>
 
@@ -52,7 +58,13 @@
 							<label for="">Color</label>
 							<select class="form-control" name="color_id" >
 								<?php foreach ($color as $value) { ?>
-									<option <?php if($value['id'] == $row['color_id']){?> selected <?php } ?> value="<?= $value['id'] ?>"><?= $value['name'] ?></option>
+									<option 
+									<?php if($value['id'] == $row['color_id']){?> 
+										selected 
+									<?php }else{?>
+										disabled="disabled"
+									<?php } ?> 
+									value="<?= $value['id'] ?>"><?= $value['name'] ?></option>
 								<?php } ?>
 							</select>
 

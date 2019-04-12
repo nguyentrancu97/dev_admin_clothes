@@ -25,7 +25,7 @@
 						<tbody>
 							<tr>
 								<td style="width: 30%;">Ảnh</td>
-								<td style="width: 70%"><img width="100%"; src="public/images/uploads/<?php echo $data_product['img'] ?>" alt=""></td>
+								<td style="width: 70%"><img width="100%"; src="<?php echo 'http://192.168.43.210:8080/img/'.$data_product['img'] ?>" alt=""></td>
 							</tr>
 							<tr>
 								<td style="width: 30%;">Product Name</td>

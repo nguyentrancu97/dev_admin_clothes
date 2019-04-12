@@ -52,6 +52,20 @@
 					</select>
 				</div>
 				<div class="form-group">
+					<label for="">Branch</label>
+					<select class="form-control" name="branch_id" >
+						<?php foreach ($branch as $value) { ?>
+							<option value="<?= $value['branch_id'] ?>"
+
+								<?php if(isset($_SESSION['dataSC']) && $value['branch_id'] == $_SESSION['dataSC']['branch_id']){?>
+									selected
+								<?php } ?>
+
+								><?= $value['name'] ?></option>
+						<?php } ?>
+					</select>
+				</div>
+				<div class="form-group">
 					<label for="">Quantity</label>
 					<input type="text" autocomplete="off" class="form-control" name="quantity" value="<?php if(isset($_SESSION['dataSC'])) echo $_SESSION['dataSC']['quantity'] ?>" required="required">
 				</div>
@@ -78,6 +92,7 @@
 			toastr.error('Thêm Thất bại!! Trùng');
 			$("select[name='color_id']").css("border-color","red");
 			$("select[name='size_id']").css("border-color","red");
+			$("select[name='branch_id']").css("border-color","red");
 		})
 	</script>
 <?php } ?>

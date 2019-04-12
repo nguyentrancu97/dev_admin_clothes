@@ -230,6 +230,9 @@
         <li class="header">MAIN NAVIGATION</li>
         
         <li><a href="?role=admin&mod=dashboard&act=dashboard "><i class="fa fa-book"></i> <span>Dashboard</span></a></li>
+        <?php if(isset($_SESSION['isLogin'])){   ?>
+        <?php        if($_SESSION['isLogin']['role'] == 0 || $_SESSION['isLogin']['role'] == 1 ){ ?>
+       
         <li class="treeview active">
           <a href="#">
             <i class="fa fa-dashboard"></i> <span>Manager</span>
@@ -246,10 +249,13 @@
             <li><a href="?role=admin&mod=branch&act=T_list"><i class="fa fa-circle-o"></i>Branch</a></li>
             <li><a href="?role=admin&mod=user&act=T_list"><i class="fa fa-circle-o"></i>User</a></li>
             <li><a href="?role=admin&mod=customer&act=T_list"><i class="fa fa-circle-o"></i>Customer</a></li>
-            <li><a href="?role=admin&mod=order&act=T_list"><i class="fa fa-circle-o"></i>Order</a></li>
+           
 
           </ul>
         </li>
+        <?php } ?>
+              
+        <?php } ?>
        <!--  <li>
           <a href="../widgets.html">
             <i class="fa fa-th"></i> <span>Widgets</span>
@@ -258,6 +264,7 @@
             </span>
           </a>
         </li> -->
+        <li><a href="?role=admin&mod=order&act=T_list"><i class="fa fa-book"></i> <span>Order</span></a></li>
        <li><a href="?role=employee&mod=sale&act=list_customer "><i class="fa fa-book"></i> <span>Sale</span></a></li>
        <li><a href="?role=employee&mod=sale&act=cart "><i class="fa fa-cart-plus"></i> <span>Cart</span></a></li>
         

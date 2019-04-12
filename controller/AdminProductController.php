@@ -5,6 +5,7 @@ include_once('model/Admin/Category.php');
 include_once('model/Admin/ProductDetail.php');
 include_once('model/Admin/Size.php');
 include_once('model/Admin/Color.php');
+include_once('model/Admin/Branch.php');
 class AdminProductController{
 	var $model_product;
 	var $model_producer;
@@ -12,6 +13,7 @@ class AdminProductController{
 	var $model_product_detail;
 	var $model_size;
 	var $model_color;
+	var $model_branch;
 	function __construct(){
 		$this->model_product = new Product();
 		$this->model_producer = new Producer();
@@ -19,6 +21,7 @@ class AdminProductController{
 		$this->model_product_detail = new ProductDetail();
 		$this->model_size = new Size();
 		$this->model_color = new Color();		
+		$this->model_branch = new Branch();		
 	} 	
 	function T_list(){
 		unset($_SESSION['dataSC']);
@@ -133,6 +136,7 @@ class AdminProductController{
  		$row = $this->model_product_detail->find($id);
  		$color = $this->model_color->T_list();
  		$size = $this->model_size->T_list();
+ 		
  		include_once('view/product/EditSizeColor.php');
  	}
  	function update_size_color(){
@@ -160,7 +164,9 @@ class AdminProductController{
  		$product_id = $_GET['id'];
  		$data_product = $this->model_product->find($product_id);
  		$data_size_color = $this->model_product_detail->FindByIDProduct($product_id);
- 		
+ 		// echo "<pre>";
+ 		// print_r($data_size_color);
+ 		// die;
  		$total_quantity=0;
  		foreach ($data_size_color as $key => $value) {
  				$total_quantity += $value['quantity'];
@@ -173,12 +179,13 @@ class AdminProductController{
  		$product_id = $_GET['product_id'];
  		$color = $this->model_color->T_list();
  		$size = $this->model_size->T_list();
+ 		$branch = $this->model_branch->T_list();
  		include_once('view/product/AddSizeColor.php');
  	}
  	function check_add_size_color($data){
  		$data_size_color = $this->model_product_detail->T_list();
  		foreach ($data_size_color as $key => $value) {
- 			if($value['product_id'] == $data['product_id'] && $value['color_id'] == $data['color_id'] && $value['size_id'] == $data['size_id']){
+ 			if($value['product_id'] == $data['product_id'] && $value['color_id'] == $data['color_id'] && $value['size_id'] == $data['size_id'] && $value['branch_id'] == $data['branch_id']){
  				return false;
  			}
  		}
@@ -191,8 +198,12 @@ class AdminProductController{
  			unset($_SESSION['dataSC']);
  			$data = $_POST;
 	 		$data['created_at'] = Date('Y-m-d H:i:s');
-	 		$result = $this->model_product_detail->create($data);
-
+	 		$create = $this->model_product_detail->create($data);
+	 		if($create){
+	 			setcookie('true','abc',time()+1);
+	 		}else{
+	 			setcookie('false','abc',time()+1);
+	 		}
 	 		header('location: ?role=admin&mod=product&act=list_size_color&product_id='.$data['product_id'].' ');
 	 		
  		}else{

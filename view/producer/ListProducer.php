@@ -21,13 +21,17 @@
 		<div class="box-header with-border " >
 
 			<table  class="table table-bordered table-striped mytable" >
+				<?php if(isset($_SESSION['isLogin']) && $_SESSION['isLogin']['role'] == 0){ ?>
 				<a href="?role=admin&mod=producer&act=add" style="margin-bottom: 20px;" class="btn btn-primary"><i class="fa fa-plus-circle" aria-hidden="true"></i></a>
+			<?php } ?>
 				<thead>
 					<tr>
 						<th>#</th>
 						<th>Name</th>
 						<th>Fax</th>
+						<?php if(isset($_SESSION['isLogin']) && $_SESSION['isLogin']['role'] == 0){ ?>
 						<th>Action</th>
+					<?php } ?>
 					</tr>
 				</thead>
 				<tbody id="tbody">
@@ -37,12 +41,14 @@
 							<td><?= $row['producer_id']?></td>
 							<td><?= $row['name']?></td>
 							<td><?= $row['fax']?></td>
+						<?php if(isset($_SESSION['isLogin']) && $_SESSION['isLogin']['role'] == 0){ ?>
 							<td>
 								<a href="?role=admin&mod=producer&act=edit&producer_id=<?php echo $row['producer_id'] ?>" class="btn btn-success"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
 								<a href="?role=admin&mod=producer&act=delete&producer_id=<?php echo $row['producer_id'] ?>" class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
 
 
 							</td>
+						<?php } ?>
 
 						</tr> 
 						<?php   

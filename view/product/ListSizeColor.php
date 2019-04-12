@@ -21,7 +21,10 @@
 		<div class="box-header with-border " >
 
 			<table class="table table-bordered table-striped mytable" >
-				<a href="?role=admin&mod=product&act=add_size_color&product_id=<?php echo $product_id ?>" style="margin-bottom: 20px;" class="btn btn-primary"><i class="fa fa-plus-circle" aria-hidden="true"></i></a>
+				<?php if(isset($_SESSION['isLogin']) && $_SESSION['isLogin']['role'] == 0){ ?>
+				<a href="?role=admin&mod=product&act=add_size_color&product_id=<?php echo $product_id ?>" style="margin-bottom: 20px;" class="btn btn-primary"><i class="fa fa-plus-circle" aria-hidden="true">
+				</i></a>
+				<?php } ?>
 				<thead>
 					<tr>
 						<th>#</th>
@@ -44,8 +47,9 @@
 							<td>
 								
 								<a href="?role=admin&mod=product&act=edit_size_color&id=<?php echo $row['id'] ?>" class="btn btn-success"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+								<?php if(isset($_SESSION['isLogin']) && $_SESSION['isLogin']['role'] == 0){ ?>
 								<a href="?role=admin&mod=product&act=delete_size_color&id=<?php echo $row['id'] ?>&product_id=<?php echo $product_id ?>" class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-
+								<?php } ?>
 
 							</td>
 
@@ -69,3 +73,19 @@
 </div>
 <!-- /.content-wrapper -->
 <?php include_once("layouts/footer.php") ?>
+<?php if(isset($_COOKIE['true'])){ ?>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			toastr.success('Thêm Thành Công!!');
+			
+		})
+	</script>
+<?php } ?>
+<?php if(isset($_COOKIE['false'])){ ?>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			toastr.error('Thêm Thất Bại!!');
+			
+		})
+	</script>
+<?php } ?>
