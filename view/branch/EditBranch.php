@@ -4,7 +4,7 @@
 	<!-- Content Header (Page header) -->
 	<section class="content-header">
 		<h1>
-			Sửa branch
+			EDIT BRAND
 			<!--  <div class="#kq"></div> -->
 		</h1>
    <!--  <ol class="breadcrumb">
@@ -21,20 +21,16 @@
 		<div class="box-header with-border" id="table">
 			<form action="?role=admin&mod=branch&act=update" method="POST" enctype="multipart/form-data" role="form">
 				<div class="form-group">
-					<label for=""></label>
-					<input type="hidden" class="form-control" value="<?= $data['branch_id'] ?>" name="branch_id">
+					<label for="">Code</label>
+					<input type="text" class="form-control" value="<?= $data['code'] ?>" name="code" required="required" placeholder="Mã chi nhánh" readonly>
 				</div>
 				<div class="form-group">
-					<label for="">Branch Name</label>
-					<input type="text" class="form-control" value="<?= $data['name'] ?>" name="name" required="required">
+					<label for="">Name</label>
+					<input type="text" class="form-control" value="<?= $data['name'] ?>" name="name" required="required" placeholder="Tên chi nhánh">
 				</div>
 				<div class="form-group">
-					<label for="">Address</label>
-					<input type="text" class="form-control" value="<?= $data['address'] ?>" name="address" required="required">
-				</div>
-				<div class="form-group">
-					<label for="">Fax</label>
-					<input type="text" class="form-control" value="<?= $data['fax'] ?>" name="fax" required="required">
+					<label for="">Description</label>
+					<textarea id="description" name="description"><?= $data['description'] ?></textarea>
 				</div>
 				
 				<div class="form-group" style="margin-top: 38px;">
@@ -54,5 +50,7 @@
 </div>
 <!-- /.content-wrapper -->
 <?php include_once('layouts/footer.php'); ?>	
-
+<script type="text/javascript">
+	CKEDITOR.replace( 'description' );
+</script>
  

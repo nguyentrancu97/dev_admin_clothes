@@ -2,22 +2,57 @@
 
 include_once("model/model.php");
 class Product extends model{
-	var $table = "products";
-	var $primary_key = "product_id";
+	var $table = "`product`";
+	var $primary_key = "id";
 
 	function ListProduct(){
-		$query = "SELECT * , products.name as product_name,
-		producers.name as producer_name, categories.name as category_name
-		FROM products
-		inner join producers on products.producer_id = producers.producer_id
-		inner join categories on products.category_id = categories.category_id";
+		$query = "SELECT product.id,product.code, product.name , product.quantity, product.image, product_status.name as status, product.price, product.created_date
+		FROM `product`
+		left join product_status on product.status_id = product_status.id";
 		
-		$result = sqlsrv_query($this->conn,$query);
+		
+		$result = mysqli_query($this->conn,$query);
 		$data = array();
-		while ($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
+		while ($row = mysqli_fetch_assoc($result)) {
 			$data[] = $row;
 		}
 		return $data;
+	}
+
+	function ProductDetail($product_id){
+		$query = "SELECT product.code, product.name , product.quantity, product.image, product.price, product.description, product.created_date, user.name as user,
+		product_status.name as status,
+		type.name as type,branch.name as branch, product_color.name as color,
+		product_ram.name as ram, product_operating_system.name as operating_system,
+		product_cpu.name as cpu, product_screen_size.name as screen_size
+		FROM `product`
+		left join product_status on product.status_id = product_status.id
+		left join type on product.type_id = type.id
+		left join branch on product.branch_id = branch.id
+		left join product_color on product.color_id = product_color.id
+		left join product_ram on product.ram_id = product_ram.id
+		left join product_operating_system on product.operating_system_id = product_operating_system.id
+		left join product_cpu on product.cpu_id = product_cpu.id
+		left join product_screen_size on product.screen_size_id = product_screen_size.id
+		left join user on product.created_by = user.id
+		where product.id = '".$product_id."'";
+		
+
+		$result = mysqli_query($this->conn,$query);
+	
+		$row = mysqli_fetch_assoc($result); 
+		
+		
+		return $row;
+	}
+	function findByCode($code){
+		$query = " SELECT * from product where code = '".$code."' ";
+		$result = mysqli_query($this->conn,$query);
+	
+		$row = mysqli_fetch_assoc($result); 
+		
+		
+		return $row;
 	}
 	
 }

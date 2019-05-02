@@ -4,7 +4,7 @@
 	<!-- Content Header (Page header) -->
 	<section class="content-header">
 		<h1>
-			Quản lí user
+			QUẢN LÍ USER
 			<!--  <div class="#kq"></div> -->
 		</h1>
    <!--  <ol class="breadcrumb">
@@ -24,14 +24,10 @@
 				<a href="?role=admin&mod=user&act=add" style="margin-bottom: 20px;" class="btn btn-primary"><i class="fa fa-plus-circle" aria-hidden="true"></i></a>
 				<thead>
 					<tr>
-						<th>#</th>
+						<th>Code</th>
 						<th>Name</th>
-						<th>UserName</th>
-						<th>Address</th>
-						<th>Date Of Birth</th>
-						<th>Branch ID</th>
-						
-						<th>Role</th>
+						<th>Email</th>
+						<th>Phone</th>
 						<th>Action</th>
 					</tr>
 				</thead>
@@ -39,29 +35,15 @@
 					<?php 
 					foreach ($data as $row) {?>
 						<tr>
-							<td><?= $row['user_id']?></td>
+							<td><?= $row['code']?></td>
 							<td><?= $row['name']?></td>
-							<td><?= $row['username']?></td>		
-							<td><?= $row['address']?></td>
-							<td><?= $row['dateofbirth'] ?></td>
-							<td><?= $row['branch_id']?></td>					
-							<td><?php  switch ($row['role']) {
-								case '0':
-									echo "System Admin";
-									break;
-								case '1':
-									echo "Admin";
-									break;
-								case '2':
-									echo "Employee";
-									break;	
-								default:
-									# code..
-									break;
-							} ?></td>
+							<td><?= $row['email']?></td>		
+							<td><?= $row['phone']?></td>
+											
+							
 							<td>
-								<a href="?role=admin&mod=user&act=edit&user_id=<?php echo $row['user_id'] ?>" class="btn btn-success"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-								<a href="?role=admin&mod=user&act=delete&user_id=<?php echo $row['user_id'] ?>" class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+								<a href="?role=admin&mod=user&act=edit&code=<?php echo $row['code'] ?>" class="btn btn-success"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+								<a href="?role=admin&mod=user&act=delete&code=<?php echo $row['code'] ?>" class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
 
 
 							</td>
@@ -86,3 +68,5 @@
 </div>
 <!-- /.content-wrapper -->
 <?php include_once("layouts/footer.php") ?>
+
+

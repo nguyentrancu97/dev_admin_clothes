@@ -9,42 +9,100 @@ class AdminCustomerController{
 		
 	}
  	function T_list(){
+ 		unset($_SESSION['value_old']);
  		$data = $this->model_customer->T_list();
  		include_once('view/customer/ListCustomer.php');
  	}
  	function add(){
  		include_once('view/customer/AddCustomer.php');
  	}
+ 	function check_add($data){
+ 		$check_code = $this->model_customer->find($data['code']);
+
+ 		if($check_code){
+ 			setcookie('code_same','abc',time()+1);
+ 			return false;
+ 		}
+
+ 		$check_email = $this->model_customer->check_email_add($data);
+ 		if($check_email){
+ 			setcookie('email_same','abc',time()+1);
+ 			return false;
+ 		}
+
+ 		$check_phone = $this->model_customer->check_phone_add($data);
+ 		if($check_phone){
+ 			setcookie('phone_same','abc',time()+1);
+ 			return false;
+ 		}
+
+ 		return true;
+ 	}
  	function store(){
  		$data = $_POST;
- 		$data['created_at'] = Date('Y-m-d H:i:s');
+ 		$data['password'] = md5($_POST['password']);
+ 		if($this->check_add($data)){
+ 		
  		$status = $this->model_customer->create($data);
  		if($status){
- 			header('location: ?role=admin&mod=customer&act=T_list');
+ 			setcookie('true','abc',time()+1);
+ 		}else{
+ 			setcookie('false','abc',time()+1);
  		}
+ 		header('location: ?role=admin&mod=customer&act=T_list');
+ 		}else{
+ 			$_SESSION['value_old'] = $_POST;	
+ 			header('location: ?role=admin&mod=customer&act=add');
+ 		}
+
  	}
  	function edit(){
- 		$id = $_GET['customer_id'];
- 		$data = $this->model_customer->find($id);
+ 		$code = $_GET['code'];
+ 		$data = $this->model_customer->find($code);
  		include_once('view/customer/EditCustomer.php');
+ 	}
+ 	function check_edit($data){
+
+ 		$check_email = $this->model_customer->check_email_edit($data);
+ 		if($check_email){
+ 			setcookie('email_same','abc',time()+1);
+ 			return false;
+ 		}
+
+ 		$check_phone = $this->model_customer->check_phone_edit($data);
+ 		if($check_phone){
+ 			setcookie('phone_same','abc',time()+1);
+ 			return false;
+ 		}
+
+ 		return true;
  	}
  	function update(){
  		$data = $_POST;
- 		// echo "<pre>";
- 		// print_r($data);
- 		// die;
- 		$data['updated_at'] = Date('Y-m-d H:i:s');
+ 		if($this->check_edit($data)){
+ 		
  		$s = $this->model_customer->update($data);
  		if($s){
- 			header('location: ?role=admin&mod=customer&act=T_list');
+ 			setcookie('true','abc',time()+1);
+ 		}else{
+ 			setcookie('false','abc',time()+1);
+ 		}
+ 		header('location: ?role=admin&mod=customer&act=T_list');
+ 		}else{
+ 			header('location: ?role=admin&mod=customer&act=edit&code='.$data['code'].' ');
  		}
  	}
  	function delete(){
- 		$customer_id = $_GET['customer_id'];
- 		$s = $this->model_customer->delete($customer_id);
+ 		$code = $_GET['code'];
+ 		$s = $this->model_customer->delete($code);
  		if($s){
- 			header('location: ?role=admin&mod=customer&act=T_list');
+ 			setcookie('true','abc',time()+1);
+ 		}else{
+ 			setcookie('false','abc',time()+1);
  		}
+ 		header('location: ?role=admin&mod=customer&act=T_list');
+ 			
+ 	
  	}
 }
 

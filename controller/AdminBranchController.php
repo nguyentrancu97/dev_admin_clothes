@@ -6,39 +6,67 @@ class AdminBranchController{
 		$this->model_branch = new Branch();
 	}
  	function T_list(){
+ 		unset($_SESSION['value_old']);
  		$data = $this->model_branch->T_list();
  		include_once('view/branch/ListBranch.php');
  	}
  	function add(){
  		include_once('view/branch/AddBranch.php');
  	}
+ 	function check_add($data){
+ 		$check_code = $this->model_branch->find($data['code']);
+
+ 		if($check_code){
+ 			setcookie('code_same','abc',time()+1);
+ 			return false;
+ 		}
+
+ 		return true;
+ 	}
  	function store(){
  		$data = $_POST;
- 		$data['created_at'] = Date('Y-m-d H:i:s');
- 		$status = $this->model_branch->create($data);
- 		if($status){
- 			header('location: ?role=admin&mod=branch&act=T_list');
- 		}
+ 		if($this->check_add($data)){
+	 		
+	 		$status = $this->model_branch->create($data);
+	 		if($status){
+	 			setcookie('true','abc',time()+1);
+	 		}else{
+	 			setcookie('false','abc',time()+1);
+	 		}
+	 		header('location: ?role=admin&mod=branch&act=T_list');
+	 	}else{
+	 		$_SESSION['value_old'] = $data;	
+ 			header('location: ?role=admin&mod=branch&act=add');
+	 	}
+ 		
  	}
  	function edit(){
- 		$id = $_GET['branch_id'];
- 		$data = $this->model_branch->find($id);
+ 		$code = $_GET['code'];
+ 		$data = $this->model_branch->find($code);
  		include_once('view/branch/EditBranch.php');
  	}
  	function update(){
  		$data = $_POST;
- 		$data['created_at'] = Date('Y-m-d H:i:s');
+ 		
  		$s = $this->model_branch->update($data);
  		if($s){
- 			header('location: ?role=admin&mod=branch&act=T_list');
+ 			setcookie('true','abc',time()+1);
+ 		}else{
+ 			setcookie('false','abc',time()+1);
  		}
+ 		header('location: ?role=admin&mod=branch&act=T_list');
+ 		
  	}
  	function delete(){
- 		$branch_id = $_GET['branch_id'];
- 		$s = $this->model_branch->delete($branch_id);
+ 		$code = $_GET['code'];
+ 		$s = $this->model_branch->delete($code);
  		if($s){
- 			header('location: ?role=admin&mod=branch&act=T_list');
+ 			setcookie('true','abc',time()+1);
+ 		}else{
+ 			setcookie('false','abc',time()+1);
  		}
+ 		header('location: ?role=admin&mod=branch&act=T_list');
+ 		
  	}
 }
 

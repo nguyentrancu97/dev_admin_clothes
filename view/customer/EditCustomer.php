@@ -4,7 +4,7 @@
 	<!-- Content Header (Page header) -->
 	<section class="content-header">
 		<h1>
-			Sửa customer
+			EDIT CUSTOMER
 			<!--  <div class="#kq"></div> -->
 		</h1>
    <!--  <ol class="breadcrumb">
@@ -21,24 +21,24 @@
 		<div class="box-header with-border" id="table">
 			<form action="?role=admin&mod=customer&act=update" method="POST" enctype="multipart/form-data" role="form">
 				<div class="form-group">
-					<label for=""></label>
-					<input type="hidden" class="form-control" value="<?= $data['customer_id'] ?>" name="customer_id" required="required">
+					<label for="">Code</label>
+					<input type="text" class="form-control" value="<?= $data['code'] ?>" name="code" required="required" placeholder="ABC" readonly>
 				</div>
 				<div class="form-group">
 					<label for="">Name</label>
-					<input type="text" class="form-control" value="<?= $data['name'] ?>" name="name" required="required">
+					<input type="text" class="form-control" value="<?= $data['name'] ?>" name="name" required="required" placeholder="Nguyễn Văn A">
 				</div>
 				<div class="form-group">
 					<label for="">Address</label>
 					<input type="text" class="form-control" value="<?= $data['address'] ?>" name="address" required="required">
 				</div>
 				<div class="form-group">
-					<label for="">DateOfBirth</label>
-					<input type="date" class="form-control" value="<?= $data['dateofbirth'] ?>" name="dateofbirth" required="required">
+					<label for="">Email</label>
+					<input type="email" class="form-control" value="<?= $data['email'] ?>" name="email" required="required" placeholder="dev@gmail.com">
 				</div>
 				<div class="form-group">
-					<label for="">User Name</label>
-					<input type="text" class="form-control" value="<?= $data['username'] ?>" name="username" required="required">
+					<label for="">Phone</label>
+					<input type="text" class="form-control" value="<?= $data['phone'] ?>" name="phone" required="required" placeholder="888 888 8888" pattern="[0-9]{3}[-][0-9]{3}[-][0-9]{4}" maxlength="12" minlength="10">
 				</div>
 				
 				<div class="form-group" style="margin-top: 38px;">

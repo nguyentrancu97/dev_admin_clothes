@@ -34,8 +34,8 @@ body{
 				<h3 style="color: red">Lấy Mật Khẩu Thất Bại</h3>
 				<?php } ?>
 				<div class="form-group">
-					<label for="">Username</label>
-					<input type="username" class="form-control" name="username" required="required" >
+					<label for="">Email</label>
+					<input type="email" class="form-control" name="email" required="required" >
 				</div>
 				<div class="form-group">
 					<label for="">Password</label>

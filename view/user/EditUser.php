@@ -4,7 +4,7 @@
 	<!-- Content Header (Page header) -->
 	<section class="content-header">
 		<h1>
-			Sửa user
+			EDIT USER
 			<!--  <div class="#kq"></div> -->
 		</h1>
    <!--  <ol class="breadcrumb">
@@ -21,37 +21,24 @@
 		<div class="box-header with-border" id="table">
 			<form action="?role=admin&mod=user&act=update" method="POST" enctype="multipart/form-data" role="form">
 				<div class="form-group">
-					<label for=""></label>
-					<input type="hidden" class="form-control" value="<?= $data['user_id'] ?>" name="user_id" required="required">
+					<label for="">Code</label>
+					<input type="text" class="form-control" value="<?= $data['code'] ?>" name="code" required="required" placeholder="ABC" readonly autocomplete="off">
 				</div>
 				<div class="form-group">
 					<label for="">Name</label>
-					<input type="text" class="form-control" value="<?= $data['name'] ?>" name="name" required="required">
+					<input type="text" class="form-control" value="<?= $data['name'] ?>" name="name" required="required" placeholder="Nguyễn Văn A" autocomplete="off">
 				</div>
 				<div class="form-group">
-					<label for="">Address</label>
-					<input type="text" class="form-control" value="<?= $data['address'] ?>" name="address" required="required">
+					<label for="">Email</label>
+					<input type="text" class="form-control" value="<?= $data['email'] ?>" name="email" required="required" autocomplete="off">
 				</div>
 				<div class="form-group">
-					<label for="">DateOfBirth</label>
-					<input type="date" class="form-control" value="<?= $data['dateofbirth'] ?>" name="dateofbirth" required="required">
+					<label for="">Phone</label>
+					<input type="text" class="form-control" value="<?= $data['phone'] ?>" name="phone"
+					 required="required" placeholder="888-888-8888" pattern="[0-9]{3}[-][0-9]{3}[-][0-9]{4}" maxlength="12" autocomplete="off">
 				</div>
 				
-				<div class="form-group">
-					<label for="">User Name</label>
-					<input type="text" class="form-control" value="<?= $data['username'] ?>" name="username" required="required">
-				</div>
 				
-				<div class="form-group">
-					<label for="">Role</label>
-					<select class="form-control" name="role" >
-						
-						<option value="0" <?php if($data['role'] == 0){ ?> selected <?php } ?> >Admin</option>
-						<option value="1" <?php if($data['role'] == 1){ ?> selected <?php } ?> >Employee</option>
-						<option value="2" <?php if($data['role'] == 2){ ?> selected <?php } ?> >Shipper</option>
-						
-					</select>
-				</div>
 				<div class="form-group" style="margin-top: 38px;">
 
 					<button type="submit" class="btn btn-primary">Edit</button>

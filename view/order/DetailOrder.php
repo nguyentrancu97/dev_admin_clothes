@@ -4,7 +4,7 @@
 	<!-- Content Header (Page header) -->
 	<section class="content-header">
 		<h1>
-			Quản lí order
+			DETAIL ORDER
 			<!--  <div class="#kq"></div> -->
 		</h1>
    <!--  <ol class="breadcrumb">
@@ -20,89 +20,132 @@
 	<div class="box">
 		<div class="box-header with-border">
 			<div class="row">
-				<div class="col-xs-3">
-					<table class="table table-hover table-bordered">
+				<div class="col-xs-6">
+					<h4>Order Info</h4>
+					<table class="table table-striped table-bordered">
+						
 						<tbody>
 							<tr>
-								<td><b>Mã order</b></td>
-								<td><?php echo $data_customer['order_id'] ?></td>
+								<td><b>Code order</b></td>
+								<td><?php echo $data_order['code'] ?></td>
 							</tr>
 							<tr>
-								<td><b>Tên khách hàng</b></td>
-								<td><?php echo $data_customer['customer_name'] ?></td>
+								<td><b>Created By</b></td>
+								<td><?php echo $data_order['user_name'] ?></td>
+
+							</tr>
+						
+							<tr>
+								<td><b>Status</b></td>
+								<td>
+									<?php if($data_order['status'] == 1){
+										echo "Đang chờ duyệt";
+									}elseif($data_order['status']==2){
+										echo "Đang chờ vận chuyển";
+									}elseif($data_order['status']==3){
+										echo "Đang vận chuyển";
+									}elseif($data_order['status']==4){
+										echo "Đã hoàn thành";
+									} ?>
+								</td>
+							</tr>
+						
+						</tbody>
+					</table>
+					<h4>Ship Info</h4>
+					<table class="table table-striped table-bordered">
+						<tbody>
+							
+							<tr>
+								<td><b>Name </b></td>
+								<td><?php echo $data_order['csin_name'] ?></td>
+								
 							</tr>
 							<tr>
-								<td><b>Tên đăng nhập</b></td>
-								<td><?php echo $data_customer['username'] ?></td>
+								<td><b>Address</b></td>
+								<td><?php echo $data_order['csin_address'] ?></td>
+								
 							</tr>
 							<tr>
-								<td><b>Địa chỉ</b></td>
-								<td><?php echo $data_customer['customer_address'] ?></td>
+								<td><b>Phone</b></td>
+								<td><?php echo $data_order['csin_phone'] ?></td>
+								
 							</tr>
 							<tr>
-								<td><b>Ngày sinh</b></td>
-								<td><?php echo $data_customer['dateofbirth'] ?></td>
+								<td><b>Email</b></td>
+								<td><?php echo $data_order['csin_email'] ?></td>
+								
 							</tr>
 						</tbody>
 					</table>
 				</div>
-				<div class="col-xs-9">
-					<table class="table table-hover table-bordered">
+				<div class="col-xs-6">
+					<h4>Customer Info</h4>
+					<table class="table table-striped table-bordered">
+						
 						<tbody>
 							<tr>
-								<td style="width: 30%; font-weight: 600;">Địa chỉ nhận</td>
-								<td>
-									<?php if(isset($data_order_detail[0])) echo $data_order_detail[0]['address_receive'] ?>
-										
-								</td>
+								<td><b>Name</b></td>
+								<td><?php echo $data_order['customer_name'] ?></td>
 							</tr>
 							<tr>
-								<td style="width: 30%;font-weight: 600;">Điện thoại nhận</td>
-								<td><?php if(isset($data_order_detail[0]))  echo $data_order_detail[0]['phone_receive'] ?></td>
+								<td><b>Email</b></td>
+								<td><?php echo $data_order['customer_email'] ?></td>
+							</tr>
+							<tr>
+								<td><b>Address</b></td>
+								<td><?php echo $data_order['customer_address'] ?></td>
+							</tr>
+							<tr>
+								<td><b>Phone</b></td>
+								<td><?php echo $data_order['customer_phone'] ?></td>
 							</tr>
 						</tbody>
 					</table>
-					<table class="table table-hover table-bordered">
+				</div>
+				
+			</div>
+			<h4>Order Detail</h4>
+				<table class="table table-striped table-bordered">
+
 						<thead>
 							<tr>
-								<th>Tên Sản phẩm</th>
-								<th>Size</th>
-								<th>Color</th>
-								<th>Số lượng</th>
-								<th>Giá/1</th>
+								<th>Product Code</th>
+								<th>Product Name</th>
+								<th>Quantity</th>
+								<th>Product Price</th>
+								
 							</tr>
 							
 						</thead>
 						<tbody>
 							<?php $tong = 0 ;
 							foreach ($data_order_detail as $key => $value){
-								$tong += $value['price'] * $value['quantity_buy'];
+								$tong += $value['product_price'] * $value['quantity_buy'];
 							?>
 
 								<tr>
+									<td><?php echo $value['product_code'] ?></td>
 									<td><?php echo $value['product_name'] ?></td>
-									<td><?php echo $value['size_name'] ?></td>
-									<td><?php echo $value['color_name'] ?></td>
 									<td><?php echo $value['quantity_buy'] ?></td>
-									<td><?php echo $value['price'] ?></td>
+									<td><?php echo number_format($value['product_price']) ?>đ</td>
+									
 								</tr>
 							<?php } ?>
 							
 							<tr>
-								<td><b style="margin-right: 15px;">Tổng:</b><?php echo $tong ?>đ</td>
+								<td><b style="margin-right: 15px;">Tổng:</b><?php echo number_format($tong) ?>đ</td>
 							</tr>
 						</tbody>
-					</table>
-
-				</div>
-			</div>
-			<?php if(isset($data_order_detail[0]) && $data_order_detail[0]['status'] == 0){ 	?>
-
+				</table>
+			<?php if($data_order['status'] < 4 && $data_order['status'] > 1){ ?>
 			<a class="btn btn-success" href="?role=admin&mod=order&act=process&order_id=<?php echo 
-			$order_id ?>">Xử lí</a>
-
+			$order_id ?>&status=<?=$data_order['status'] ?>">Xử lí</a>
 			<?php } ?>
+
+			<a href="?role=admin&mod=order&act=delete&order_id=<?php echo $order_id ?>&status=<?=$data_order['status'] ?>" class="btn btn-danger"></i>Hủy</a>
 			
+		<!-- 	<a class="btn btn-info" onclick="print()" href="">In</a> -->
 			<a class="btn btn-primary" href="?role=admin&mod=order&act=T_list">Quay Lại</a>
 		</div>
 
@@ -116,3 +159,11 @@
 </div>
 <!-- /.content-wrapper -->
 <?php include_once('layouts/footer.php') ?>
+<!-- <script>
+	$(document).ready(function(){
+		function print(){
+			window.print();
+		}
+	})
+	
+</script> -->

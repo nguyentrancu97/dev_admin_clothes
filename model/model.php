@@ -11,20 +11,24 @@ class model{
 
 	function find($id){
 	    $query = "SELECT * FROM ".$this->table." WHERE ".$this->primary_key." = '".$id."' " ;
-	    $result = sqlsrv_query($this->conn, $query);
+	    // echo $query;
+	    // die;
+	    $result = mysqli_query($this->conn, $query);
 
-	    $row = sqlsrv_fetch_array( $result, SQLSRV_FETCH_ASSOC);
+	    $row = mysqli_fetch_assoc($result);
 
 	    return $row;
 
 	}
 	function T_list(){
 		$sql = "SELECT * FROM ".$this->table." ";
+		
 		$data = array();
-		$result = sqlsrv_query($this->conn, $sql);
-		while($row = sqlsrv_fetch_array( $result, SQLSRV_FETCH_ASSOC)){
+		$result = mysqli_query($this->conn, $sql);
+		while($row = mysqli_fetch_assoc($result)){
 			$data[] = $row;
 		}
+		
 		return $data;
 	}
 	function create($data){
@@ -34,7 +38,7 @@ class model{
 
 		foreach ($data as $key => $value) {
 			$fields = $fields . $key . ',';
-			$values = $values ."N'" .$value. "',"; 
+			$values = $values ."'" .$value. "',"; 
 		}
 
 		$fields = trim($fields, ',');
@@ -44,7 +48,7 @@ class model{
 		VALUES (".$values.")";
 		// echo $query;
 		// die;
-		$status = sqlsrv_query($this->conn, $query);
+		$status = mysqli_query($this->conn, $query);
 		return $status;
 	}
 	function update($data){
@@ -54,22 +58,23 @@ class model{
 			if($key == $this->primary_key){
 				continue;
 			}else{
-				$sql .= $key."=". "N'" .$value. "',";
+				$sql .= $key."=". "'" .$value. "',";
 			}
 		}
+		
 		$sql = trim($sql,',');	
 
 		$query = "UPDATE ".$this->table." SET ".$sql." WHERE ".$this->primary_key." = '".$data[$this->primary_key]."' ";
 		// echo $query;
 		// die;
-    	$status = sqlsrv_query($this->conn, $query);
+    	$status = mysqli_query($this->conn, $query);
   
     	return $status;
 	}
 	function delete($id){
-		$sql = "DELETE FROM ".$this->table." WHERE ".$this->primary_key." = $id ";
+		$sql = "DELETE FROM ".$this->table." WHERE ".$this->primary_key." = '".$id."' ";
 		
-		$result = sqlsrv_query($this->conn, $sql);
+		$result = mysqli_query($this->conn, $sql);
 		return $result;
 	}
 

@@ -4,7 +4,7 @@
 	<!-- Content Header (Page header) -->
 	<section class="content-header">
 		<h1>
-			Quản lí branch
+			MANAGER BRAND
 			<!--  <div class="#kq"></div> -->
 		</h1>
    <!--  <ol class="breadcrumb">
@@ -21,36 +21,32 @@
 		<div class="box-header with-border" >
 
 			<table class="table table-bordered table-striped mytable" >
-				<?php if(isset($_SESSION['isLogin']) && $_SESSION['isLogin']['role'] == 0){ ?>
+				
 				<a href="?role=admin&mod=branch&act=add" style="margin-bottom: 20px;" class="btn btn-primary"><i class="fa fa-plus-circle" aria-hidden="true"></i></a>
-			<?php } ?>
+		
 				<thead>
 					<tr>
-						<th>#</th>
+						<th>Code</th>
 						<th>Name</th>
-						<th>Address</th>
-						<th>Fax</th>
-						<?php if(isset($_SESSION['isLogin']) && $_SESSION['isLogin']['role'] == 0){ ?>
+						<th>Description</th>
 						<th>Action</th>
-					<?php } ?>
+					
 					</tr>
 				</thead>
 				<tbody id="tbody">
 					<?php 
 					foreach ($data as $row) {?>
 						<tr>
-							<td><?= $row['branch_id']?></td>
+							<td><?= $row['code']?></td>
 							<td><?= $row['name']?></td>
-							<td><?= $row['address']?></td>
-							<td><?= $row['fax']?></td>
-							<?php if(isset($_SESSION['isLogin']) && $_SESSION['isLogin']['role'] == 0){ ?>
+							<td><?= $row['description']?></td>
 							<td>
-								<a href="?role=admin&mod=branch&act=edit&branch_id=<?php echo $row['branch_id'] ?>" class="btn btn-success"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-								<a href="?role=admin&mod=branch&act=delete&branch_id=<?php echo $row['branch_id'] ?>" class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+								<a href="?role=admin&mod=branch&act=edit&code=<?php echo $row['code'] ?>" class="btn btn-success"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+								<a href="?role=admin&mod=branch&act=delete&code=<?php echo $row['code'] ?>" class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
 
 
 							</td>
-						<?php } ?>
+						
 
 						</tr> 
 						<?php   

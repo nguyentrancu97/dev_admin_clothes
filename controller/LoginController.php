@@ -12,13 +12,13 @@ class LoginController
 
 	function checklogin(){
 		$data = array();
-		$data['username'] = $_POST['username'];
-		$data['password'] = $_POST['password'];
+		$data['email'] = $_POST['email'];
+		$data['password'] = md5($_POST['password']);
 
 		$status = $this->model_login->checklogin($data);
+		
 		$_SESSION['isLogin'] = $status;
-		// var_dump($_SESSION['isLogin']);
-		// die;
+		
 		if($_SESSION['isLogin']){
 			header('Location: index.php?role=admin&mod=dashboard&act=dashboard');
 		}else{

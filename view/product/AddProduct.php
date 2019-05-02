@@ -4,7 +4,7 @@
 	<!-- Content Header (Page header) -->
 	<section class="content-header">
 		<h1>
-			Thêm Sản Phẩm
+			ADD PRODUCT
 			<!--  <div class="#kq"></div> -->
 		</h1>
    <!--  <ol class="breadcrumb">
@@ -25,21 +25,32 @@
 					<div class="col-xs-6">
 						<div class="form-group">
 							<label for="">Code</label>
-							<input type="text" class="form-control" name="product_code" 
-							value="<?php if(isset($_SESSION['data'])) echo $_SESSION['data']['product_code'] ?>" required="required">
+							<input type="text" class="form-control" name="code" 
+							value="<?php if(isset($_SESSION['value_old'])) echo $_SESSION['value_old']['code'] ?>" required="required" autocomplete="off">
 						</div>
+
 						<div class="form-group">
 							<label for="">Name</label>
 							<input type="text" class="form-control" name="name"
-							 value="<?php if(isset($_SESSION['data'])) echo $_SESSION['data']['name'] ?>" required="required">
+							 value="<?php if(isset($_SESSION['value_old'])) echo $_SESSION['value_old']['name'] ?>" required="required" autocomplete="off">
 						</div>
 						<div class="form-group">
-							<label for="">Producer</label>
-							<select class="form-control" name="producer_id" >
-								<?php foreach ($producer as $value) { ?>
-									<option value="<?= $value['producer_id'] ?>"
+							<label for="">Quantity</label>
+							<input type="text" class="form-control" name="quantity" 
+							value="<?php if(isset($_SESSION['value_old'])) echo $_SESSION['value_old']['quantity'] ?>" required="required" autocomplete="off">
+						</div>
+						<div class="form-group">
+							<label for="">Price</label>
+							<input type="text" class="form-control" name="price" 
+							value="<?php if(isset($_SESSION['value_old'])) echo $_SESSION['value_old']['price'] ?>" required="required" autocomplete="off">
+						</div>
+						<div class="form-group">
+							<label for="">Type</label>
+							<select class="form-control" name="type_id" >
+								<?php foreach ($type as $value) { ?>
+									<option value="<?= $value['id'] ?>"
 										
-										<?php if(isset($_SESSION['data']) && $value['producer_id'] == $_SESSION['data']['producer_id']){?>
+										<?php if(isset($_SESSION['value_old']) && $value['id'] == $_SESSION['value_old']['type_id']){?>
 												selected
 										<?php } ?>
 
@@ -48,37 +59,120 @@
 							</select>
 						</div>
 						<div class="form-group">
-							<label for="">Description</label>
-							<input type="text" autocomplete="off" class="form-control" 
-							value="<?php if(isset($_SESSION['data'])) echo $_SESSION['data']['description'] ?>" name="description"  required="required">
-						</div>
-					</div>
-					<div class="col-xs-6">
-						<div class="form-group">
-							<label for="">Img</label>
-							<input type="file" class="form-control" name="img">
-						</div>
-
-						<div class="form-group">
-							<label for="">Category</label>
-							<select class="form-control" name="category_id">
-								<?php foreach ($category as $value) { ?>
-									<option value="<?= $value['category_id'] ?>"
-										<?php if(isset($_SESSION['data']) && $value['category_id'] == $_SESSION['data']['category_id']){?>
-											selected
+							<label for="">Color</label>
+							<select class="form-control" name="color_id" >
+								<?php foreach ($color as $value) { ?>
+									<option value="<?= $value['id'] ?>"
+										
+										<?php if(isset($_SESSION['value_old']) && $value['id'] == $_SESSION['value_old']['color_id']){?>
+												selected
 										<?php } ?>
-										><?= $value['name'] ?></option>
+
+										><?= $value['name']?></option>
 								<?php } ?>
 							</select>
 						</div>
 						<div class="form-group">
-							<label for="">Price</label>
-							<input type="text" class="form-control" name="price" 
-							value="<?php if(isset($_SESSION['data'])) echo $_SESSION['data']['price'] ?>" required="required">
+							<label for="">Ram</label>
+							<select class="form-control" name="ram_id" >
+								<?php foreach ($ram as $value) { ?>
+									<option value="<?= $value['id'] ?>"
+										
+										<?php if(isset($_SESSION['value_old']) && $value['id'] == $_SESSION['value_old']['ram_id']){?>
+												selected
+										<?php } ?>
+
+										><?= $value['name']?></option>
+								<?php } ?>
+							</select>
+						</div>
+						
+					</div>
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label for="">Image</label>
+							<input type="file" name="image" required="required">
+						</div>
+						<div class="form-group">
+							<label for="">Status</label>
+							<select class="form-control" name="status_id" >
+								<?php foreach ($status as $value) { ?>
+									<option value="<?= $value['id'] ?>"
+										
+										<?php if(isset($_SESSION['value_old']) && $value['id'] == $_SESSION['value_old']['status_id']){?>
+												selected
+										<?php } ?>
+
+										><?= $value['name']?></option>
+								<?php } ?>
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="">Operating System</label>
+							<select class="form-control" name="operating_system_id" >
+								<?php foreach ($operating_system as $value) { ?>
+									<option value="<?= $value['id'] ?>"
+										
+										<?php if(isset($_SESSION['value_old']) && $value['id'] == $_SESSION['value_old']['operating_system_id']){?>
+												selected
+										<?php } ?>
+
+										><?= $value['name']?></option>
+								<?php } ?>
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="">Cpu</label>
+							<select class="form-control" name="cpu_id" >
+								<?php foreach ($cpu as $value) { ?>
+									<option value="<?= $value['id'] ?>"
+										
+										<?php if(isset($_SESSION['value_old']) && $value['id'] == $_SESSION['value_old']['cpu_id']){?>
+												selected
+										<?php } ?>
+
+										><?= $value['name']?></option>
+								<?php } ?>
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="">Brand</label>
+							<select class="form-control" name="branch_id" >
+								<?php foreach ($branch as $value) { ?>
+									<option value="<?= $value['id'] ?>"
+										
+										<?php if(isset($_SESSION['value_old']) && $value['id'] == $_SESSION['value_old']['branch_id']){?>
+												selected
+										<?php } ?>
+
+										><?= $value['name']?></option>
+								<?php } ?>
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="">Screen Size</label>
+							<select class="form-control" name="screen_size_id" >
+								<?php foreach ($screen_size as $value) { ?>
+									<option value="<?= $value['id'] ?>"
+										
+										<?php if(isset($_SESSION['value_old']) && $value['id'] == $_SESSION['value_old']['screen_size_id']){?>
+												selected
+										<?php } ?>
+
+										><?= $value['name']?></option>
+								<?php } ?>
+							</select>
 						</div>
 					</div>
+
 				</div>
-				
+				<div class="form-group">
+					<label for="">Description</label>
+					<textarea id="description" name="description" required="required">
+						<?php if(isset($_SESSION['value_old'])) echo $_SESSION['value_old']['description'] ?>
+					</textarea>
+
+				</div>
 				<div class="form-group" style="margin-top: 38px;">
 
 					<button type="submit" class="btn btn-primary">Create</button>
@@ -96,16 +190,11 @@
 </div>
 <!-- /.content-wrapper -->
 <?php include_once('layouts/footer.php'); ?>
+<script type="text/javascript">
+	CKEDITOR.replace( 'description' );
+</script>
 
 
-<?php if(isset($_COOKIE['false'])){ ?>
-	<script type="text/javascript">
-		$(document).ready(function(){
-			toastr.error('Thêm Thất bại!! Trùng Mã');
-			$("input[name='product_code']").css("border-color","red");
-		})
-	</script>
-<?php } ?>
 
 
 

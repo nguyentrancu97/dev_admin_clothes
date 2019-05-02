@@ -4,7 +4,7 @@
 	<!-- Content Header (Page header) -->
 	<section class="content-header">
 		<h1>
-			Chi tiết sản phẩm
+			DETAIL PRODUCT
 			<!--  <div class="#kq"></div> -->
 		</h1>
    <!--  <ol class="breadcrumb">
@@ -24,23 +24,61 @@
 					<table class="table table-hover ">
 						<tbody>
 							<tr>
-								<td style="width: 30%;">Ảnh</td>
-								<td style="width: 70%"><img width="100%"; src="<?php echo 'http://192.168.43.210:8080/img/'.$data_product['img'] ?>" alt=""></td>
+								<td style="width: 30%;"><b>Code</b></td>
+								<td style="width: 70%"><?php echo $data_product['code']; ?></td>
 							</tr>
 							<tr>
-								<td style="width: 30%;">Product Name</td>
+								<td style="width: 30%;"><b>Status</b></td>
+								<td style="width: 70%"><?php echo $data_product['status']; ?></td>
+							</tr>
+							<tr>
+								<td style="width: 30%;"><b>Created By</b></td>
+								<td style="width: 70%"><?php echo $data_product['user']; ?></td>
+							</tr>
+							<tr>
+								<td style="width: 30%;"><b>Name</b></td>
 								<td style="width: 70%"><?php echo $data_product['name']; ?></td>
 							</tr>
 							<tr>
-								<td style="width: 30%;">Total Quantity</td>
-								<td style="width: 70%"><?php echo $total_quantity; ?></td>
+								<td style="width: 30%;"><b>Quantity</b></td>
+								<td style="width: 70%"><?php echo $data_product['quantity']; ?></td>
 							</tr>
 							<tr>
-								<td style="width: 30%;">Price</td>
-								<td style="width: 70%"><?php echo $data_product['price']; ?></td>
+								<td style="width: 30%;"><b>Price</b></td>
+								<td style="width: 70%"><?php echo number_format($data_product['price']) ; ?>đ</td>
 							</tr>
 							<tr>
-								<td style="width: 30%;">Description</td>
+								<td style="width: 30%;"><b>Type</b></td>
+								<td style="width: 70%"><?php echo $data_product['type']; ?></td>
+							</tr>
+							<tr>
+								<td style="width: 30%;"><b>Brand</b></td>
+								<td style="width: 70%"><?php echo $data_product['branch']; ?></td>
+							</tr>
+							<tr>
+								<td style="width: 30%;"><b>Color</b></td>
+								<td style="width: 70%"><?php echo $data_product['color']; ?></td>
+							</tr>
+							<tr>
+								<td style="width: 30%;"><b>Ram</b></td>
+								<td style="width: 70%"><?php echo $data_product['ram']; ?></td>
+							</tr>
+							<tr>
+								<td style="width: 30%;"><b>Operating System</b></td>
+								<td style="width: 70%"><?php echo $data_product['operating_system']; ?></td>
+							</tr>
+							<tr>
+								<td style="width: 30%;"><b>Cpu</b></td>
+								<td style="width: 70%"><?php echo $data_product['cpu']; ?></td>
+							</tr>
+							<tr>
+								<td style="width: 30%;"><b>Screen Size</b></td>
+								<td style="width: 70%"><?php echo $data_product['screen_size']; ?></td>
+							</tr>
+							
+							
+							<tr>
+								<td style="width: 30%;"><b>Description</b></td>
 								<td style="width: 70%"><?php echo $data_product['description']; ?></td>
 							</tr>
 
@@ -49,22 +87,12 @@
 				</div>
 				<div class="col-xs-6">
 					<table class="table table-hover ">
-						<thead>
-							<tr>
-								<th>Color</th>
-								<th>Size</th>
-								<th>Quantity</th>
-							</tr>
-						</thead>
-						<tbody>
-							<?php foreach ($data_size_color as $key => $value): ?>
-								<tr>
-									<td><?php echo $value['color_name'] ?></td>
-									<td><?php echo $value['size_name'] ?></td>
-									<td><?php echo $value['quantity'] ?></td>
-								</tr>
-							<?php endforeach ?>
 							
+						<tbody>
+							
+							<tr>	
+								<td ><img style="width:500px; height: 500px;" src="public/images/uploads/<?php echo $data_product['image'] ?>"></td>
+							</tr>
 						</tbody>
 					</table>
 

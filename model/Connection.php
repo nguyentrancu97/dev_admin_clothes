@@ -2,21 +2,19 @@
 class Connection{
 	var $conn;
 	function getConnect(){
- 		$serverName = "TRANDUCCU\SQLTRANCU"; //serverName\instanceName
- 		$connectionInfo = array( 
- 			"Database"=>"Tram_ND", 
- 			"UID"=>"sa", 
- 			"PWD"=>"123456",
- 			'CharacterSet' => 'UTF-8',
- 			'ReturnDatesAsStrings'=>true
- 		);
- 		$this->conn = sqlsrv_connect( $serverName, $connectionInfo);
- 		if( $this->conn ) {
- 			return $this->conn;
- 		}else{
- 			echo "Connection could not be established.<br />";
- 			die( print_r( sqlsrv_errors(), true));
- 		}
+ 		$severname = "localhost";
+
+		$username = "root";
+
+		$password = "";
+
+		$dbname = "dev_web_economic";
+
+		$conn = mysqli_connect($severname,$username,$password,$dbname);
+		$conn->set_charset("utf8");
+
+		return $conn;
+ 		
  	}
  }
 

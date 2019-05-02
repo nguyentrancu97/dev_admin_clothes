@@ -6,63 +6,67 @@ class AdminColorController{
 		$this->model_color = new Color();
 	}
  	function T_list(){
- 		$_SESSION['list'] = $this->model_color->T_list();
- 		$data = $_SESSION['list'];
+ 		unset($_SESSION['value_old']);
+ 		$data = $this->model_color->T_list();
  		include_once('view/color/ListColor.php');
  	}
  	function add(){
  		include_once('view/color/AddColor.php');
  	}
  	function check_add($data){
- 		
- 		$list_color = $_SESSION['list'];
- 		
- 		foreach ($list_color as $key => $value) {
- 			if($value['name'] === $data['name']){
- 				return false;
- 			}
+ 		$check_code = $this->model_color->find($data['code']);
+
+ 		if($check_code){
+ 			setcookie('code_same','abc',time()+1);
+ 			return false;
  		}
+
  		return true;
  	}
  	function store(){
- 		
- 		$_SESSION['data'] = $_POST;
- 		$status = $this->check_add($_POST);
- 		if($status == false){
- 			setcookie('false','abc',time()+2);
- 			header('location: ?role=admin&mod=color&act=add');
- 		}
- 		else{
- 			$data = $_POST;
- 			$data['created_at'] = Date('Y-m-d H:i:s');
+ 		$data = $_POST;
+ 		if($this->check_add($data)){
+	 		
 	 		$status = $this->model_color->create($data);
 	 		if($status){
-	 			unset($_SESSION['list']);
-	 			unset($_SESSION['data']);
-	 			header('location: ?role=admin&mod=color&act=T_list');
+	 			setcookie('true','abc',time()+1);
+	 		}else{
+	 			setcookie('false','abc',time()+1);
 	 		}
- 		}
+	 		header('location: ?role=admin&mod=color&act=T_list');
+	 	}else{
+	 		$_SESSION['value_old'] = $data;	
+ 			header('location: ?role=admin&mod=color&act=add');
+	 	}
  		
  	}
  	function edit(){
- 		$id = $_GET['id'];
- 		$data = $this->model_color->find($id);
+ 		$code = $_GET['code'];
+ 		$data = $this->model_color->find($code);
  		include_once('view/color/EditColor.php');
  	}
  	function update(){
  		$data = $_POST;
- 		$data['updated_at'] = Date('Y-m-d H:i:s');
+ 	
  		$s = $this->model_color->update($data);
  		if($s){
- 			header('location: ?role=admin&mod=color&act=T_list');
+ 			setcookie('true','abc',time()+1);
+ 		}else{
+ 			setcookie('false','abc',time()+1);
  		}
+ 		header('location: ?role=admin&mod=color&act=T_list');
+ 		
  	}
  	function delete(){
- 		$color_id = $_GET['id'];
- 		$s = $this->model_color->delete($color_id);
+ 		$code = $_GET['code'];
+ 		$s = $this->model_color->delete($code);
  		if($s){
- 			header('location: ?role=admin&mod=color&act=T_list');
+ 			setcookie('true','abc',time()+1);
+ 		}else{
+ 			setcookie('false','abc',time()+1);
  		}
+ 		header('location: ?role=admin&mod=color&act=T_list');
+ 		
  	}
 }
 

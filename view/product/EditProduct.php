@@ -4,7 +4,7 @@
 	<!-- Content Header (Page header) -->
 	<section class="content-header">
 		<h1>
-			Sửa sản phẩm
+			EDIT PRODUCT
 			<!--  <div class="#kq"></div> -->
 		</h1>
    <!--  <ol class="breadcrumb">
@@ -17,63 +17,120 @@
 <!-- Main content -->
 <section class="content">
 	<!-- Default box -->
+	<!-- ?role=admin&mod=product&act=store -->
 	<div class="box">
 		<div class="box-header with-border" id="table">
-			<a href="?role=admin&mod=product&act=list_size_color&product_id=<?= $id ?>" style="margin-bottom: 20px;" class="btn btn-success"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>&nbsp;&nbsp;Size và color</a>
-			<form action="?role=admin&mod=product&act=update" method="POST" enctype="multipart/form-data" role="form">	
-				<div class="form-group">
-					<label for="">Product_id</label>
-					<input type="text" class="form-control" value="<?= $row['product_id'] ?>" name="product_id" readonly>
-				</div>
-				<div class="form-group">
-					<label for="">Name</label>
-					<input type="text" class="form-control" value="<?= $row['name'] ?>" name="name" required="required">
-				</div>
-				<div class="form-group">
-					<label for="">Code</label>
-					<input type="text" class="form-control" value="<?= $row['product_code'] ?>" name="product_code" required="required">
-				</div>
-				<div class="form-group">
-					<label for="">Img</label>
-					<input type="file" class="form-control" name="img">
-				</div>
-				
-				<div class="form-group">
-					<label for="">Producer</label>
-					<select class="form-control" name="producer_id" >
-						<?php foreach ($producer as $value) { ?>
-							<option <?php if($value['producer_id'] == $row['producer_id']){?> selected <?php } ?> value="<?= $value['producer_id'] ?>"><?= $value['name'] ?></option>
-						<?php } ?>
-					</select>
+			<form action="?role=admin&mod=product&act=update" method="POST" enctype="multipart/form-data" role="form" id="form_add">
+				<div class="row"> 
+					<div class="col-xs-6">
+						<input type="hidden" class="form-control" value="<?php echo $row['id']; ?>" name="id" >
+						<div class="form-group">
+							<label for="">Code</label>
+							<input type="text" class="form-control" name="code" 
+							value="<?php echo $row['code']; ?>" required="required" autocomplete="off" readonly>
+						</div>
+
+						<div class="form-group">
+							<label for="">Name</label>
+							<input type="text" class="form-control" name="name"
+							 value="<?php echo $row['name']; ?>" required="required" autocomplete="off">
+						</div>
+						<div class="form-group">
+							<label for="">Quantity</label>
+							<input type="text" class="form-control" name="quantity" 
+							value="<?php echo $row['quantity']; ?>" required="required" autocomplete="off">
+						</div>
+						<div class="form-group">
+							<label for="">Price</label>
+							<input type="text" class="form-control" name="price" 
+							value="<?php echo $row['price']; ?>" required="required" autocomplete="off">
+						</div>
+						
+						<div class="form-group">
+							<label for="">Type</label>
+							<select class="form-control" name="type_id" >
+								<?php foreach ($type as $value) { ?>
+									<option <?php if($value['id'] == $row['type_id']){?> selected <?php } ?> value="<?= $value['id'] ?>"><?= $value['name'] ?></option>
+								<?php } ?>
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="">Color</label>
+							<select class="form-control" name="color_id" >
+								<?php foreach ($color as $value) { ?>
+									<option <?php if($value['id'] == $row['color_id']){?> selected <?php } ?> value="<?= $value['id'] ?>"><?= $value['name'] ?></option>
+								<?php } ?>
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="">Ram</label>
+							<select class="form-control" name="ram_id" >
+								<?php foreach ($ram as $value) { ?>
+									<option <?php if($value['id'] == $row['ram_id']){?> selected <?php } ?> value="<?= $value['id'] ?>"><?= $value['name'] ?></option>
+								<?php } ?>
+							</select>
+						</div>
+						
+					</div>
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label for="">Image</label>
+							<input type="file" name="image">
+						</div>
+						<div class="form-group">
+							<label for="">Status</label>
+							<select class="form-control" name="status_id" >
+								<?php foreach ($status as $value) { ?>
+									<option <?php if($value['id'] == $row['status_id']){?> selected <?php } ?> value="<?= $value['id'] ?>"><?= $value['name'] ?></option>
+								<?php } ?>
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="">Operating System</label>
+							<select class="form-control" name="operating_system_id" >
+								<?php foreach ($operating_system as $value) { ?>
+									<option <?php if($value['id'] == $row['operating_system_id']){?> selected <?php } ?> value="<?= $value['id'] ?>"><?= $value['name'] ?></option>
+								<?php } ?>
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="">Cpu</label>
+							<select class="form-control" name="cpu_id" >
+								<?php foreach ($cpu as $value) { ?>
+									<option <?php if($value['id'] == $row['cpu_id']){?> selected <?php } ?> value="<?= $value['id'] ?>"><?= $value['name'] ?></option>
+								<?php } ?>
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="">Brand</label>
+							<select class="form-control" name="branch_id" >
+								<?php foreach ($branch as $value) { ?>
+									<option <?php if($value['id'] == $row['branch_id']){?> selected <?php } ?> value="<?= $value['id'] ?>"><?= $value['name'] ?></option>
+								<?php } ?>
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="">Screen Size</label>
+							<select class="form-control" name="screen_size_id" >
+								<?php foreach ($screen_size as $value) { ?>
+									<option <?php if($value['id'] == $row['screen_size_id']){?> selected <?php } ?> value="<?= $value['id'] ?>"><?= $value['name'] ?></option>
+								<?php } ?>
+							</select>
+						</div>
+					</div>
 
 				</div>
-				<div class="form-group">
-					<label for="">Category</label>
-					<select class="form-control" name="category_id">
-						<?php foreach ($category as $value) { ?>
-							<option <?php if($value['category_id'] == $row['category_id']){?> selected <?php } ?> value="<?= $value['category_id'] ?>"><?= $value['name'] ?></option>
-						<?php } ?>
-					</select>
-
-				</div>
-
 				<div class="form-group">
 					<label for="">Description</label>
-					<input type="text" autocomplete="off" value="<?= $row['description'] ?>" class="form-control" name="description"  required="required">
-				</div>
+					<textarea id="description" name="description" required="required">
+						<?php echo $row['description']; ?>
+					</textarea>
 
-				<div class="form-group">
-					<label for="">Price</label>
-					<input type="text" class="form-control" value="<?= $row['price'] ?>" name="price"  required="required">
 				</div>
 				<div class="form-group" style="margin-top: 38px;">
-					<?php if(isset($_SESSION['isLogin']) && $_SESSION['isLogin']['role'] == 0){ ?>
-					<button type="submit" class="btn btn-primary">Edit</button>
-					<?php } ?>
+
+					<button type="submit" class="btn btn-primary">EDIT</button>
 				</div>
-
-
-
 			</form>
 		</div>
 
@@ -86,5 +143,16 @@
 <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
-<?php include_once('layouts/footer.php'); ?>	
+<?php include_once('layouts/footer.php'); ?>
+<script type="text/javascript">
+	CKEDITOR.replace( 'description' );
+</script>
+
+
+
+
+
+
+ 
+
 

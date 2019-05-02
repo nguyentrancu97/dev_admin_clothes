@@ -4,7 +4,7 @@
 	<!-- Content Header (Page header) -->
 	<section class="content-header">
 		<h1>
-			Thêm user
+			THÊM USER
 			<!--  <div class="#kq"></div> -->
 		</h1>
    <!--  <ol class="breadcrumb">
@@ -18,61 +18,29 @@
 <section class="content">
 	<!-- Default box -->
 	<div class="box">
-		<div class="box-header with-border" id="table">
-			<form action="?role=admin&mod=user&act=store" method="POST" enctype="multipart/form-data" role="form">
+		<div class="box-header with-border">
+			<form action="?role=admin&mod=user&act=store" method="POST" role="form">
+				<div class="form-group">
+					<label for="">Code</label>
+					<input type="text" class="form-control" name="code" autocomplete="off" required="required" placeholder="ABC" <?php if(isset($_SESSION['value_old'])){ ?> value="<?= $_SESSION['value_old']['code'] ?>" <?php } ?>>
+				</div>
 				<div class="form-group">
 					<label for="">Name</label>
-					<input type="text" class="form-control" name="name" required="required">
+					<input type="text" class="form-control" name="name" autocomplete="off" required="required" placeholder="Nguyễn Văn A" <?php if(isset($_SESSION['value_old'])){ ?> value="<?= $_SESSION['value_old']['name'] ?>" <?php } ?>>
 				</div>
 				<div class="form-group">
-					<label for="">User Name</label>
-					<input type="text" class="form-control" name="username" required="required">
+					<label for="">Phone</label>
+					<input type="text" class="form-control" name="phone" autocomplete="off" required="required" placeholder="888-888-8888 " pattern="[0-9]{3}[-][0-9]{3}[-][0-9]{4}" maxlength="12" <?php if(isset($_SESSION['value_old'])){ ?> value="<?= $_SESSION['value_old']['phone'] ?>" <?php } ?>>
 				</div>
 				<div class="form-group">
-					<label for="">Address</label>
-					<input type="text" class="form-control" name="address" required="required">
+					<label for="">Email</label>
+					<input type="email" class="form-control" name="email" autocomplete="off" required="required" placeholder="dev@gmail.com" <?php if(isset($_SESSION['value_old'])){ ?> value="<?= $_SESSION['value_old']['email'] ?>" <?php } ?>>
 				</div>
 				<div class="form-group">
-					<label for="">DateOfBirth</label>
-					<input type="date" class="form-control" name="dateofbirth" required="required">
+					<label for="">Password</label>
+					<input type="password" class="form-control" name="password" autocomplete="off" required="required" <?php if(isset($_SESSION['value_old'])){ ?> value="<?= $_SESSION['value_old']['password'] ?>" <?php } ?>>
 				</div>
-				<?php if(isset($_SESSION['isLogin']) && $_SESSION['isLogin']['role'] == 0){ ?>
-					<div class="form-group">
-						<label for="">Brand</label>
-						<select class="form-control" name="branch_id" >
-							<?php foreach ($branch as $value) { ?>
-								<option value="<?= $value['branch_id'] ?>"><?= $value['name'] ?></option>
-							<?php } ?>
-						</select>
-					</div>
-				<?php }else{ ?>
-				<div class="form-group">
-					<label for="">Brand</label>
-					<select class="form-control" name="branch_id" >
-						<?php foreach ($branch as $value) { ?>
-									<option 
-									<?php if($value['branch_id'] == $_SESSION['isLogin']['branch_id']){?> 
-										selected 
-									<?php }else{?>
-										disabled="disabled"
-									<?php } ?> 
-									value="<?= $value['branch_id'] ?>"><?= $value['name'] ?></option>
-								<?php } ?>
-					</select>
-				</div>
-				<?php } ?>
 				
-				<div class="form-group">
-					<label for="">Role</label>
-					<select class="form-control" name="role" >
-						<?php if(isset($_SESSION['isLogin']) && $_SESSION['isLogin']['role'] == 0){ ?>
-						<option value="0">System Admin</option>
-					<?php } ?>
-						<option value="1">Admin</option>
-						<option value="2">Employee</option>
-						
-					</select>
-				</div>
 				<div class="form-group" style="margin-top: 38px;">
 
 					<button type="submit" class="btn btn-primary">Create</button>

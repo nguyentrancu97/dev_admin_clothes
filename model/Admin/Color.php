@@ -1,8 +1,8 @@
 <?php 
 include_once("model/model.php");
 class Color extends model{
-	var $table = 'colors';
-	var $primary_key = 'id';
+	var $table = 'product_color';
+	var $primary_key = 'code';
 
 }
 

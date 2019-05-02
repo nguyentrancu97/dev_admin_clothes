@@ -223,6 +223,8 @@
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/datepicker/0.6.5/datepicker.js"></script>
+<script src="public/bower_components/ckeditor_full/ckeditor.js"></script>
+
 <script>
   $(document).ready(function () {
     $('.sidebar-menu').tree();
@@ -232,16 +234,61 @@
 </script>
 <script>
   $(function () {
-  
-    $('.mytable').DataTable({
-      'paging'      : true,
-      'lengthChange': false,
-      'searching'   : false,
-      'ordering'    : true,
-      'info'        : true,
-      'autoWidth'   : false
-    })
+    $('.mytable').DataTable();
   })
 </script>
+<?php if(isset($_COOKIE['true'])){ ?>
+  <script type="text/javascript">
+    $(function(){
+      toastr.success('Success!!');
+    })
+  </script>
+<?php } ?>
+<?php if(isset($_COOKIE['false'])){ ?>
+  <script type="text/javascript">
+    $(function(){
+      toastr.error('False!!');
+    })
+  </script>
+<?php } ?>
+<?php if(isset($_COOKIE['nofile'])){ ?>
+  <script type="text/javascript">
+    $(function(){
+      toastr.error('No file!!');
+    })
+  </script>
+<?php } ?>
+<?php if(isset($_COOKIE['code_same'])){ ?>
+  <script type="text/javascript">
+    $(function(){
+      toastr.error('Code Same');
+      $("input[name='code']").css("border-color","red");
+    })
+  </script>
+<?php } ?>
+<?php if(isset($_COOKIE['email_same'])){ ?>
+  <script type="text/javascript">
+    $(function(){
+      toastr.error('Email Same');
+      $("input[name='email']").css("border-color","red");
+    })
+  </script>
+<?php } ?>
+<?php if(isset($_COOKIE['phone_same'])){ ?>
+  <script type="text/javascript">
+    $(function(){
+      toastr.error('Phone Same');
+      $("input[name='phone']").css("border-color","red");
+    })
+  </script>
+<?php } ?>
+<?php if(isset($_COOKIE['beyond_quantity'])){ ?>
+  <script type="text/javascript">
+    $(function(){
+      toastr.error('Beyond Quantity');
+    
+    })
+  </script>
+<?php } ?>
 </body>
 </html>

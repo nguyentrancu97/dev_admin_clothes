@@ -4,7 +4,7 @@
 	<!-- Content Header (Page header) -->
 	<section class="content-header">
 		<h1>
-			Quản lí customer
+			QUẢN LÍ CUSTOMER
 			<!--  <div class="#kq"></div> -->
 		</h1>
    <!--  <ol class="breadcrumb">
@@ -24,11 +24,11 @@
 				<a href="?role=admin&mod=customer&act=add" style="margin-bottom: 20px;" class="btn btn-primary"><i class="fa fa-plus-circle" aria-hidden="true"></i></a>
 				<thead>
 					<tr>
-						<th>#</th>
+						<th>Code</th>
 						<th>Name</th>
 						<th>Address</th>
-						<th>Date Of Birth</th>
-						<th>Username</th>
+						<th>Email</th>
+						<th>Phone</th>
 					
 						<th>Action</th>
 					</tr>
@@ -37,15 +37,15 @@
 					<?php 
 					foreach ($data as $row) {?>
 						<tr>
-							<td><?= $row['customer_id']?></td>
+							<td><?= $row['code']?></td>
 							<td><?= $row['name']?></td>
 							<td><?= $row['address']?></td>
-							<td><?= $row['dateofbirth'] ?></td>
-							<td><?= $row['username']?></td>
+							<td><?= $row['email'] ?></td>
+							<td><?= $row['phone']?></td>
 						
 							<td>
-								<a href="?role=admin&mod=customer&act=edit&customer_id=<?php echo $row['customer_id'] ?>" class="btn btn-success"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-								<a href="?role=admin&mod=customer&act=delete&customer_id=<?php echo $row['customer_id'] ?>" class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+								<a href="?role=admin&mod=customer&act=edit&code=<?php echo $row['code'] ?>" class="btn btn-success"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+								<a href="?role=admin&mod=customer&act=delete&code=<?php echo $row['code'] ?>" class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
 
 
 							</td>

@@ -21,24 +21,28 @@
 		<div class="box-header with-border" id="table">
 			<form action="?role=admin&mod=customer&act=store" method="POST" enctype="multipart/form-data" role="form">
 				<div class="form-group">
+					<label for="">Code</label>
+					<input type="text" class="form-control" name="code" required="required" placeholder="ABC" autocomplete="off" <?php if(isset($_SESSION['value_old'])){ ?> value="<?= $_SESSION['value_old']['code'] ?>" <?php } ?>>
+				</div>
+				<div class="form-group">
 					<label for="">Name</label>
-					<input type="text" class="form-control" name="name" required="required">
+					<input type="text" class="form-control" name="name" required="required" placeholder="Nguyễn Văn A" autocomplete="off" <?php if(isset($_SESSION['value_old'])){ ?> value="<?= $_SESSION['value_old']['name'] ?>" <?php } ?>>
 				</div>
 				<div class="form-group">
 					<label for="">Address</label>
-					<input type="text" class="form-control" name="address" required="required">
+					<input type="text" class="form-control" name="address" required="required" placeholder="Hà Nội" autocomplete="off" <?php if(isset($_SESSION['value_old'])){ ?> value="<?= $_SESSION['value_old']['address'] ?>" <?php } ?>>
 				</div>
 				<div class="form-group">
-					<label for="">DateOfBirth</label>
-					<input type="date" class="form-control" name="dateofbirth" required="required">
+					<label for="">Email</label>
+					<input type="email" class="form-control" name="email" required="required" placeholder="dev@gmail.com" autocomplete="off" <?php if(isset($_SESSION['value_old'])){ ?> value="<?= $_SESSION['value_old']['email'] ?>" <?php } ?>>
 				</div>
 				<div class="form-group">
-					<label for="">User Name</label>
-					<input type="text" class="form-control" name="username" required="required">
+					<label for="">Phone</label>
+					<input type="text" class="form-control" name="phone" required="required" placeholder="888-888-8888 " pattern="[0-9]{3}[-][0-9]{3}[-][0-9]{4}" maxlength="12" minlength="10" autocomplete="off" <?php if(isset($_SESSION['value_old'])){ ?> value="<?= $_SESSION['value_old']['phone'] ?>" <?php } ?>>
 				</div>
 				<div class="form-group">
 					<label for="">Password</label>
-					<input type="password" class="form-control" name="password" required="required">
+					<input type="password" class="form-control" name="password" required="required" <?php if(isset($_SESSION['value_old'])){ ?> value="<?= $_SESSION['value_old']['password'] ?>" <?php } ?>>
 				</div>
 				
 				<div class="form-group" style="margin-top: 38px;">

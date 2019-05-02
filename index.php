@@ -1,6 +1,6 @@
 <?php 
 session_start();
-// session_destroy();
+
 $role = "";
 $mod = "";
 $act = "";
@@ -15,18 +15,6 @@ if(isset($_GET['mod']) && isset($_GET['act']) && isset($_GET['role'])){
 	
 }
 
-
-// switch ($act) {
-// 	case 'login':
-// 		$controller->Showlogin();
-// 		break;
-// 	case 'check_login':
-// 		$controller->checklogin();
-// 		break;
-// 	default:
-// 		# code...
-// 		break;
-// }
 switch ($role) {
 	case 'admin':
 		switch ($mod) {
@@ -51,28 +39,16 @@ switch ($role) {
 						$controller->T_list();
 						break;
 					case 'add':
-						$controller->ShowAddProduct();
-						break;
-					case 'check_add':
-						$controller->check_add();
+						$controller->add();
 						break;
 					case 'store':
 						$controller->store();
 						break;
 					case 'edit':
-						$controller->ShowEditProduct();
+						$controller->edit();
 						break;
 					case 'update':
 						$controller->update();
-						break;
-					case 'list_size_color':
-						$controller->ListSizeColor();
-						break;
-					case 'edit_size_color':
-						$controller->EditSizeColor();
-						break;
-					case 'update_size_color':
-						$controller->update_size_color();
 						break;
 					case 'delete':
 						$controller->delete();
@@ -80,23 +56,95 @@ switch ($role) {
 					case 'detail':
 						$controller->detail();
 						break;
-					case 'add_size_color':
-						$controller->add_size_color();
+					default:
+						# code...
 						break;
-					case 'store_size_color':
-						$controller->store_size_color();
+				}
+				break;
+			case 'cpu':
+				include_once('controller/AdminCpuController.php');
+				$controller = new AdminCpuController();
+				switch ($act) {
+					case 'T_list':
+						$controller->T_list();
 						break;
-					case 'delete_size_color':
-						$controller->delete_size_color();
+					case 'add':
+						$controller->add();
+						break;
+					case 'store':
+						$controller->store();
+						break;
+					case 'edit':
+						$controller->edit();
+						break;
+					case 'update':
+						$controller->update();
+						break;
+					case 'delete':
+						$controller->delete();
 						break;
 					default:
 						# code...
 						break;
 				}
 				break;
-			case 'size':
-				include_once('controller/AdminSizeController.php');
-				$controller = new AdminSizeController();
+			case 'ram':
+				include_once('controller/AdminRamController.php');
+				$controller = new AdminRamController();
+				switch ($act) {
+					case 'T_list':
+						$controller->T_list();
+						break;
+					case 'add':
+						$controller->add();
+						break;
+					case 'store':
+						$controller->store();
+						break;
+					case 'edit':
+						$controller->edit();
+						break;
+					case 'update':
+						$controller->update();
+						break;
+					case 'delete':
+						$controller->delete();
+						break;
+					default:
+						# code...
+						break;
+				}
+				break;
+			case 'status':
+				include_once('controller/AdminStatusController.php');
+				$controller = new AdminStatusController();
+				switch ($act) {
+					case 'T_list':
+						$controller->T_list();
+						break;
+					case 'add':
+						$controller->add();
+						break;
+					case 'store':
+						$controller->store();
+						break;
+					case 'edit':
+						$controller->edit();
+						break;
+					case 'update':
+						$controller->update();
+						break;
+					case 'delete':
+						$controller->delete();
+						break;
+					default:
+						# code...
+						break;
+				}
+				break;
+			case 'screen_size':
+				include_once('controller/AdminScreenSizeController.php');
+				$controller = new AdminScreenSizeController();
 				switch ($act) {
 					case 'T_list':
 						$controller->T_list();
@@ -148,9 +196,9 @@ switch ($role) {
 						break;
 				}
 				break;
-			case 'category':
-				include_once("controller/AdminCategoryController.php");
-				$controller = new AdminCategoryController();
+			case 'type':
+				include_once("controller/AdminTypeController.php");
+				$controller = new AdminTypeController();
 				switch ($act) {
 					case 'T_list':
 						$controller->T_list();
@@ -175,9 +223,63 @@ switch ($role) {
 						break;
 				}
 				break;
-			case 'producer':
-				include_once("controller/AdminProducerController.php");
-				$controller = new AdminProducerController();
+			case 'role':
+				include_once("controller/AdminRoleController.php");
+				$controller = new AdminRoleController();
+				switch ($act) {
+					case 'T_list':
+						$controller->T_list();
+						break;
+					case 'add':
+						$controller->add();
+						break;
+					case 'store':
+						$controller->store();
+						break;
+					case 'edit':
+						$controller->edit();
+						break;
+					case 'update':
+						$controller->update();
+						break;
+					case 'delete':
+						$controller->delete();
+						break;
+					default:
+						# code...
+						break;
+				}
+				break;
+			case 'slider':
+				include_once("controller/AdminSliderController.php");
+				$controller = new AdminSliderController();
+				switch ($act) {
+					case 'T_list':
+						$controller->T_list();
+						break;
+					case 'add':
+						$controller->add();
+						break;
+					case 'store':
+						$controller->store();
+						break;
+					case 'edit':
+						$controller->edit();
+						break;
+					case 'update':
+						$controller->update();
+						break;
+					case 'delete':
+						$controller->delete();
+						break;
+					default:
+						# code...
+						break;
+				}
+				break;
+			case 'operating_system':
+				include_once("controller/AdminOperatingSystemController.php");
+				$controller = new AdminOperatingSystemController();
 				switch ($act) {
 					case 'T_list':
 						$controller->T_list();
@@ -311,6 +413,30 @@ switch ($role) {
 					case 'process':
 						$controller->process();
 						break;
+					case 'huy':
+						$controller->huy();
+						break;
+					case 'filter':
+						$controller->filter();
+						break;
+					case 'filter_date':
+						$controller->filter_date();
+						break;
+					default:
+						# code...
+						break;
+				}
+				break;
+			case 'statistical':
+				include_once("controller/AdminStatisticalController.php");
+				$controller = new AdminStatisticalController();
+				switch ($act) {
+					case 'getTopSale':
+						$controller->getTopSale();
+						break;
+					case 'getTopUser':
+						$controller->getTopUser();
+						break;
 					default:
 						# code...
 						break;
@@ -322,55 +448,7 @@ switch ($role) {
 
 		}
 		break;
-	case 'employee':
-		switch ($mod) {
-			case 'sale':
-				include_once('controller/AdminSaleController.php');
-				$controller = new AdminSaleController();
-				switch ($act) {
-					case 'list_customer':
-						if(isset($_SESSION['customer'])){
-							$controller->list_product();
-						}else{
-							$controller->list_customer();
-						}
-						
-						break;
-					case 'list_product':
-						$controller->list_product();
-						break;
-					case 'buy':
-						$controller->buy();
-						break;
-					case 'cart':
-						$controller->cart();
-						break;
-					case 'add2cart':
-						$controller->add2cart();
-						break;
-					case 'reduce':
-						$controller->reduce();
-						break;
-					case 'removeCart':
-						$controller->removeCart();
-						break;
-					case 'delete_cart':
-						$controller->delete_cart();
-						break;
-					case 'check_out':
-						$controller->check_out();
-						break;
-					default:
-						# code...
-						break;
-				}
-				break;
-			
-			default:
-				# code...
-				break;
-		}
-		break;
+	
 	case '':
 		switch ($mod) {
 			case '':

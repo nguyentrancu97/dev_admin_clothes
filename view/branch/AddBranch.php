@@ -4,7 +4,7 @@
 	<!-- Content Header (Page header) -->
 	<section class="content-header">
 		<h1>
-			Thêm branch
+			ADD BRAND
 			<!--  <div class="#kq"></div> -->
 		</h1>
    <!--  <ol class="breadcrumb">
@@ -21,19 +21,19 @@
 		<div class="box-header with-border" id="table">
 			<form action="?role=admin&mod=branch&act=store" method="POST" enctype="multipart/form-data" role="form">
 				<div class="form-group">
-					<label for="">Branch Name</label>
-					<input type="text" class="form-control" name="name" required="required">
+					<label for="">Code</label>
+					<input type="text" class="form-control" name="code" required="required" placeholder="Mã chi nhánh" autocomplete="off" <?php if(isset($_SESSION['value_old'])){ ?> value="<?= $_SESSION['value_old']['code'] ?>" <?php } ?>>
 				</div>
 				<div class="form-group">
-					<label for="">Address</label>
-					<input type="text" class="form-control"  name="address" required="required">
+					<label for="">Name</label>
+					<input type="text" class="form-control" name="name" required="required" placeholder="Tên chi nhánh" autocomplete="off" <?php if(isset($_SESSION['value_old'])){ ?> value="<?= $_SESSION['value_old']['name'] ?>" <?php } ?>>
 				</div>
 				<div class="form-group">
-					<label for="">Fax</label>
-					<input type="text" class="form-control" name="fax" required="required">
+					<label for="">Description</label>
+					<textarea id="description" name="description">
+						<?php if(isset($_SESSION['value_old'])){ echo $_SESSION['value_old']['description']; } ?>
+					</textarea>
 				</div>
-				
-
 				<div class="form-group" style="margin-top: 38px;">
 
 					<button type="submit" class="btn btn-primary">Create</button>
@@ -51,5 +51,7 @@
 </div>
 <!-- /.content-wrapper -->
 <?php include_once('layouts/footer.php'); ?>	
-
+<script type="text/javascript">
+	CKEDITOR.replace( 'description' );
+</script>
  

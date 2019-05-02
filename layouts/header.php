@@ -37,6 +37,10 @@
       margin: 0;
       padding: 0;
       font-family: Arial, Helvetica, sans-serif;
+      
+    }
+    h1{
+      font-family: Arial, Helvetica, sans-serif;
     }
   </style>
 </head>
@@ -48,9 +52,9 @@
     <!-- Logo -->
     <a href="../../index2.html" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>A</b>LT</span>
+      <span class="logo-mini"><b>DEV</b></span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>Admin</b>LTE</span>
+      <span class="logo-lg"><b>Admin</b></span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
@@ -151,7 +155,7 @@
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <img src="public/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
-              <span class="hidden-xs"><?php if($_SESSION['isLogin']) echo $_SESSION['isLogin']['user_name']; ?></span>
+              <span class="hidden-xs"><?php if($_SESSION['isLogin']) echo $_SESSION['isLogin']['name']; ?></span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
@@ -159,7 +163,7 @@
                 <img src="public/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 
                 <p>
-                  <?php if($_SESSION['isLogin']) echo $_SESSION['isLogin']['user_name']; ?> - Web Developer
+                  <?php if($_SESSION['isLogin']) echo $_SESSION['isLogin']['name']; ?> - Web Developer
                   <small>Member since Nov. 2012</small>
                 </p>
               </li>
@@ -210,7 +214,7 @@
           <img src="public/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p><?php if($_SESSION['isLogin']) echo $_SESSION['isLogin']['user_name']; ?></p>
+          <p><?php if($_SESSION['isLogin']) echo $_SESSION['isLogin']['name']; ?></p>
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
       </div>
@@ -229,9 +233,8 @@
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MAIN NAVIGATION</li>
         
-        <li><a href="?role=admin&mod=dashboard&act=dashboard "><i class="fa fa-book"></i> <span>Dashboard</span></a></li>
-        <?php if(isset($_SESSION['isLogin'])){   ?>
-        <?php        if($_SESSION['isLogin']['role'] == 0 || $_SESSION['isLogin']['role'] == 1 ){ ?>
+        <li><a href="?role=admin&mod=statistical&act=getTopSale "><i class="fa fa-book"></i> <span>Sản phẩm bán chạy nhất</span></a></li>
+        
        
         <li class="treeview active">
           <a href="#">
@@ -242,20 +245,23 @@
           </a>
           <ul class="treeview-menu">
             <li><a href="?role=admin&mod=product&act=T_list"><i class="fa fa-circle-o"></i>Product</a></li>
-            <li><a href="?role=admin&mod=size&act=T_list"><i class="fa fa-circle-o"></i>Size</a></li>
+            <li><a href="?role=admin&mod=cpu&act=T_list"><i class="fa fa-circle-o"></i>Cpu</a></li>
+            <li><a href="?role=admin&mod=ram&act=T_list"><i class="fa fa-circle-o"></i>Ram</a></li>
+            <li><a href="?role=admin&mod=screen_size&act=T_list"><i class="fa fa-circle-o"></i>Screen Size</a></li>
+            <li><a href="?role=admin&mod=status&act=T_list"><i class="fa fa-circle-o"></i>Status</a></li>
             <li><a href="?role=admin&mod=color&act=T_list"><i class="fa fa-circle-o"></i>Color</a></li>
-            <li><a href="?role=admin&mod=category&act=T_list"><i class="fa fa-circle-o"></i>Category</a></li>
-            <li><a href="?role=admin&mod=producer&act=T_list"><i class="fa fa-circle-o"></i>Producer</a></li>
-            <li><a href="?role=admin&mod=branch&act=T_list"><i class="fa fa-circle-o"></i>Branch</a></li>
+            <li><a href="?role=admin&mod=type&act=T_list"><i class="fa fa-circle-o"></i>Type</a></li>
+            <li><a href="?role=admin&mod=role&act=T_list"><i class="fa fa-circle-o"></i>Role</a></li>
+            <li><a href="?role=admin&mod=operating_system&act=T_list"><i class="fa fa-circle-o"></i>Operating System</a></li>
+            <li><a href="?role=admin&mod=branch&act=T_list"><i class="fa fa-circle-o"></i>Brand</a></li>
             <li><a href="?role=admin&mod=user&act=T_list"><i class="fa fa-circle-o"></i>User</a></li>
             <li><a href="?role=admin&mod=customer&act=T_list"><i class="fa fa-circle-o"></i>Customer</a></li>
+            <li><a href="?role=admin&mod=slider&act=T_list"><i class="fa fa-circle-o"></i>Slider</a></li>
            
 
           </ul>
         </li>
-        <?php } ?>
-              
-        <?php } ?>
+     
        <!--  <li>
           <a href="../widgets.html">
             <i class="fa fa-th"></i> <span>Widgets</span>
@@ -265,8 +271,7 @@
           </a>
         </li> -->
         <li><a href="?role=admin&mod=order&act=T_list"><i class="fa fa-book"></i> <span>Order</span></a></li>
-       <li><a href="?role=employee&mod=sale&act=list_customer "><i class="fa fa-book"></i> <span>Sale</span></a></li>
-       <li><a href="?role=employee&mod=sale&act=cart "><i class="fa fa-cart-plus"></i> <span>Cart</span></a></li>
+       
         
       </ul>
     </section>

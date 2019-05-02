@@ -1,105 +1,150 @@
 <?php 
 include_once('model/Admin/Order.php');
 include_once('model/Admin/OrderDetail.php');
-include_once('model/Admin/ProductDetail.php');
+include_once('model/Admin/Product.php');
 class AdminOrderController{
 	var $model_order;
 	var $model_order_detail;
-	var $model_product_detail;
+	var $model_product;
 	function __construct(){
 		$this->model_order = new Order();
 		$this->model_order_detail = new OrderDetail();
-		$this->model_product_detail= new ProductDetail();
+		$this->model_product= new Product();
 	}
  	function T_list(){
  		$data = $this->model_order->ListOrder();
  		
- 		// echo "<pre>";
- 		// print_r($data);
- 		// die;
  		include_once('view/order/ListOrder.php');
  	}
- 	function add(){
- 		include_once('view/order/AddOrder.php');
- 	}
- 	function store(){
- 		$data = $_POST;
- 		$data['created_at'] = Date('Y-m-d H:i:s');
- 		$status = $this->model_order->create($data);
- 		if($status){
- 			header('location: ?role=admin&mod=order&act=T_list');
- 		}
- 	}
- 	function edit(){
- 		$id = $_GET['order_id'];
- 		$data = $this->model_order->find($id);
- 		include_once('view/order/EditOrder.php');
- 	}
- 	function update(){
- 		$data = $_POST;
- 		$data['updated_at'] = Date('Y-m-d H:i:s');
- 		$s = $this->model_order->update($data);
- 		if($s){
- 			header('location: ?role=admin&mod=order&act=T_list');
- 		}
- 	}
+ 	
  	function delete(){
  		$order_id = $_GET['order_id'];
- 		$s = $this->model_order->delete($order_id);
- 		if($s){
- 			header('location: ?role=admin&mod=order&act=T_list');
+ 		$status = $_GET['status'];
+
+ 	
+ 		//cập nhật trạng thái order sau khi xử lí
+ 		$orderUpdate['id'] = $order_id;
+ 		$orderUpdate['created_by'] = $_SESSION['isLogin']['id'];
+ 		$orderUpdate['status'] = '';
+ 		if($status == 1 ){
+ 			//Lấy bản ghi có cùng order_id trong order_detail
+ 			$data_order_detail = $this->model_order_detail->FindByIdOrder($order_id);
+ 		// echo "<pre>";
+ 		// print_r($data_order_detail);
+ 		// die;
+ 			$data_arr = array();
+ 		//cộng sản phẩm trong product
+ 			foreach ($data_order_detail as $key => $value) {
+ 				$data = $this->model_product->find($value['product_id']);
+
+ 				$data['quantity'] = $data['quantity'] + $value['quantity_buy'];
+
+ 				$data_arr[] = $data;
+ 			}
+ 		//cộng xong
+
+ 		//cập nhật số lượng sản phẩm sau khi cộng trong product
+
+ 			foreach ($data_arr as $key => $data) {
+
+ 				$result = $this->model_product->update($data);
+ 			// var_dump($result);
+ 			// die;
+ 			}
+ 		//cập nhât số lượng product xong
+ 			$delete_order_detail = $this->model_order_detail->delete_by_order_id($order_id);
+ 			if($delete_order_detail){
+ 				$s = $this->model_order->delete($order_id);
+ 				if($s){
+ 					setcookie('true','abc',time()+1);
+ 				}else{
+ 					setcookie('false','abc',time()+1);
+ 				}
+ 			}else{
+ 				setcookie('false','abc',time()+1);
+ 			}
+
+ 			header('location: ?role=admin&mod=order&act=T_list'	);
+ 		}elseif($status == 2){
+ 			$orderUpdate['status'] = 1;
+ 		}elseif($status == 3){
+ 			$orderUpdate['status'] = 2;
+ 		}elseif($status == 4){
+ 			$orderUpdate['status'] = 3;
  		}
+ 		
+ 		$update_order = $this->model_order->update($orderUpdate);
+ 		
+ 		if($update_order){
+ 			setcookie('true','abc',time()+1);
+ 		}else{
+ 			setcookie('false','abc',time()+1);
+ 		}
+ 		//end cập nhật
+ 		header('location: ?role=admin&mod=order&act=filter&status='.$orderUpdate['status'].' ');
+ 		
+ 		
  	}
 
  	function detail(){
  		$order_id = $_GET['order_id'];
 
- 		$data_customer = $this->model_order->FindOrder($order_id);
+ 		$data_order = $this->model_order->FindOrder($order_id);
+
+ 		// $order_code = $data_customer['order_code'];
  		
- 	
- 		$order_code = $data_customer['order_code'];
- 		
- 		$data_order_detail = $this->model_order_detail->FindByIdOrder($order_code);
+ 		$data_order_detail = $this->model_order_detail->FindByIdOrder($order_id);
  		
  		include_once('view/order/DetailOrder.php');
  	}
  	function process(){
  		$order_id = $_GET['order_id'];
-
- 		$order = $this->model_order->find($order_id);
+ 		$status = $_GET['status'];
  		
- 		$order_code = $order['order_code'];
-
- 		$data_order_detail = $this->model_order_detail->FindIdOrderNotJoin($order_code);
- 		// echo "<pre>";
- 		// print_r($data_order_detail);
- 		// die;
- 		$data_arr = array();
+ 		//cập nhật trạng thái order sau khi xử lí
+ 		$orderUpdate['id'] = $order_id;
+ 		$orderUpdate['created_by'] = $_SESSION['isLogin']['id'];
+ 		$orderUpdate['status'] = '';
+ 		if($status == 1 ){
+ 			$orderUpdate['status'] = 2;
+ 		}elseif($status == 2){
+ 			$orderUpdate['status'] = 3;
+ 		}elseif($status == 3){
+ 			$orderUpdate['status'] = 4;
+ 		}
  		
- 		foreach ($data_order_detail as $key => $value) {
- 			$data = $this->model_product_detail->find($value['product_detail_id']);
- 			unset($data['rowguid']);
- 		 	$data['quantity'] = $data['quantity'] - $value['quantity_buy'];
- 		 
- 			if($data['quantity'] < 0){
- 				die(setcookie('false','abc',time()+1));
- 			}
- 			$data_arr[] = $data;
+ 		$update_order = $this->model_order->update($orderUpdate);
+ 		
+ 		if($update_order){
+ 			setcookie('true','abc',time()+1);
+ 		}else{
+ 			setcookie('false','abc',time()+1);
  		}
- 		// echo "<pre>";
- 		// print_r($data_arr);
- 		// die;
- 		foreach ($data_arr as $key => $data) {
- 			$data['updated_at'] = Date('Y-m-d H:i:s');
- 			$result = $this->model_product_detail->update($data);
- 		}
- 		$orderNew['order_id'] = $order_id;
- 		$orderNew['status'] = 1;
-
- 		$update_order = $this->model_order->update($orderNew);
- 		setcookie('process_success','abc',time()+1);
- 		header('location: ?role=admin&mod=order&act=T_list');
+ 		//end cập nhật
+ 		header('location: ?role=admin&mod=order&act=filter&status='.$orderUpdate['status'].' ');
  	}
+
+ 	function filter(){
+ 		if(isset($_POST['status'])){
+ 			$status = $_POST['status'];
+ 		}
+ 		if(isset($_GET['status'])){
+ 			$status = $_GET['status'];
+ 		}
+ 		if($status==0){
+ 			header('location: ?role=admin&mod=order&act=T_list');
+ 		}
+ 		$data = $this->model_order->filter_by_status($status);
+ 		include_once('view/order/ListOrder.php');
+ 	}
+
+ 	function filter_date(){
+ 		$from = $_POST['from'];
+ 		$to = $_POST['to'];
+ 		$data = $this->model_order->filter_date($from,$to);
+ 		include_once('view/order/ListOrder.php');
+ 	}
+ 	
 }
 
 ?>

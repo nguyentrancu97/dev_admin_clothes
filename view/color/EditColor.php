@@ -4,7 +4,7 @@
 	<!-- Content Header (Page header) -->
 	<section class="content-header">
 		<h1>
-			Sửa color
+			EDIT COLOR
 			<!--  <div class="#kq"></div> -->
 		</h1>
    <!--  <ol class="breadcrumb">
@@ -18,16 +18,18 @@
 <section class="content">
 	<!-- Default box -->
 	<div class="box">
-		<div class="box-header with-border" id="table">
+		<div class="box-header with-border">
 			<form action="?role=admin&mod=color&act=update" method="POST" enctype="multipart/form-data" role="form">
 				<div class="form-group">
-					<label for=""></label>
-					<input type="hidden" class="form-control" value="<?= $data['id'] ?>" name="id">
+					<label for="">Code</label>
+					<input type="text" class="form-control" value="<?= $data['code'] ?>" name="code" required="required" readonly autocomplete="off">
 				</div>
 				<div class="form-group">
-					<label for="">Color Name</label>
-					<input type="text" class="form-control" value="<?= $data['name'] ?>" name="name" required="required">
+					<label for="">Name</label>
+					<input type="text" class="form-control" value="<?= $data['name'] ?>" name="name" required="required" autocomplete="off">
 				</div>
+				
+				
 				<div class="form-group" style="margin-top: 38px;">
 
 					<button type="submit" class="btn btn-primary">Edit</button>
