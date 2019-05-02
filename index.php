@@ -18,19 +18,6 @@ if(isset($_GET['mod']) && isset($_GET['act']) && isset($_GET['role'])){
 switch ($role) {
 	case 'admin':
 		switch ($mod) {
-			case 'dashboard':
-				include_once("controller/AdminDashboardController.php");
-				$controller = new AdminDashboardController();
-				switch ($act) {
-					case 'dashboard':
-						$controller->dashboard();
-						break;
-					
-					default:
-						# code...
-						break;
-				}
-				break;
 			case 'product':
 				include_once("controller/AdminProductController.php");
 				$controller = new AdminProductController();
