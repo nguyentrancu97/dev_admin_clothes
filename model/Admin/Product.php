@@ -22,13 +22,13 @@ class Product extends model{
 	function ProductDetail($product_id){
 		$query = "SELECT product.code, product.name , product.quantity, product.image, product.price, product.description, product.created_date, user.name as user,
 		product_status.name as status,
-		type.name as type,branch.name as branch, product_color.name as color,
+		product_type.name as type,product_branch.name as branch, product_color.name as color,
 		product_ram.name as ram, product_operating_system.name as operating_system,
 		product_cpu.name as cpu, product_screen_size.name as screen_size
 		FROM `product`
 		left join product_status on product.status_id = product_status.id
-		left join type on product.type_id = type.id
-		left join branch on product.branch_id = branch.id
+		left join product_type on product.type_id = product_type.id
+		left join product_branch on product.branch_id = product_branch.id
 		left join product_color on product.color_id = product_color.id
 		left join product_ram on product.ram_id = product_ram.id
 		left join product_operating_system on product.operating_system_id = product_operating_system.id

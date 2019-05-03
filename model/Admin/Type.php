@@ -1,7 +1,7 @@
 <?php 
 include_once("model/model.php");
 class Type extends model{
-	var $table = 'type';
+	var $table = 'product_type';
 	var $primary_key = 'code';
 
 }

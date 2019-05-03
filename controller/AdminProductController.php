@@ -134,6 +134,7 @@ class AdminProductController{
  	function delete(){
  		$product_id = $_GET['id'];
  		$status = $this->model_product->delete($product_id);
+ 		
  		if($status){
  				setcookie('true','abc',time()+1);
  			}else{

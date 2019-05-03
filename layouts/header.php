@@ -234,10 +234,22 @@
         <li class="header">MAIN NAVIGATION</li>
         
         <li><a href="?role=admin&mod=product&act=T_list"><i class="fa fa-book"></i> <span>Product</span></a></li>
+<?php include_once('helper/middleware.php');
+$middleware = new Middleware(); ?>
+<?php if($middleware->check_boss() || $middleware->check_admin() || $middleware->check_employee()){ ?>
         <li><a href="?role=admin&mod=order&act=T_list"><i class="fa fa-book"></i> <span> Order</span></a></li>
+<?php } ?>
+<?php if($middleware->check_boss()){ ?>
         <li><a href="?role=admin&mod=statistical&act=getTopSale "><i class="fa fa-book"></i> <span>Top Best Sell Product</span></a></li>
         <li><a href="?role=admin&mod=statistical&act=getTopStaff "><i class="fa fa-book"></i> <span>Top Best Seller</span></a></li>
-      
+        <li><a href="?role=admin&mod=user&act=T_list"><i class="fa fa-book"></i><span>User</span></a></li>
+<?php } ?>
+
+        
+
+        
+
+<?php if($middleware->check_boss() || $middleware->check_admin()){ ?>      
         <li class="treeview active">
           <a href="#">
             <i class="fa fa-dashboard"></i> <span>Manager</span>
@@ -256,14 +268,14 @@
             <li><a href="?role=admin&mod=role&act=T_list"><i class="fa fa-circle-o"></i>Role</a></li>
             <li><a href="?role=admin&mod=operating_system&act=T_list"><i class="fa fa-circle-o"></i>Operating System</a></li>
             <li><a href="?role=admin&mod=branch&act=T_list"><i class="fa fa-circle-o"></i>Brand</a></li>
-            <li><a href="?role=admin&mod=user&act=T_list"><i class="fa fa-circle-o"></i>User</a></li>
+            
             <li><a href="?role=admin&mod=customer&act=T_list"><i class="fa fa-circle-o"></i>Customer</a></li>
             <li><a href="?role=admin&mod=slider&act=T_list"><i class="fa fa-circle-o"></i>Slider</a></li>
            
 
           </ul>
         </li>
-     
+<?php } ?>     
        <!--  <li>
           <a href="../widgets.html">
             <i class="fa fa-th"></i> <span>Widgets</span>
