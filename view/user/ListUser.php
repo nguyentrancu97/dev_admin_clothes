@@ -4,7 +4,7 @@
 	<!-- Content Header (Page header) -->
 	<section class="content-header">
 		<h1>
-			QUẢN LÍ USER
+			MANAGER USER
 			<!--  <div class="#kq"></div> -->
 		</h1>
    <!--  <ol class="breadcrumb">
@@ -46,7 +46,7 @@
 								<a href="?role=admin&mod=user&act=role&code=<?php echo $row['code'] ?>" class="btn btn-info"><i class="fa fa-plus" aria-hidden="true"></i></a>
 								<?php } ?>
 								<a href="?role=admin&mod=user&act=edit&code=<?php echo $row['code'] ?>" class="btn btn-success"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-								<a href="?role=admin&mod=user&act=delete&code=<?php echo $row['code'] ?>" class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+								<a href="" data-url="?role=admin&mod=user&act=delete&code=<?php echo $row['code'] ?>" class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
 
 								
 							</td>

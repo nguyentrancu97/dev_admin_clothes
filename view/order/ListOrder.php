@@ -4,7 +4,7 @@
 	<!-- Content Header (Page header) -->
 	<section class="content-header">
 		<h1>
-			Manager order
+			MANAGER ORDER
 			<!--  <div class="#kq"></div> -->
 		</h1>
 	   
@@ -34,12 +34,12 @@
 						
 						<div style="padding: 5px 0;">
 							<label style="width: 80px;" for="date">Từ ngày</label>
-							<input type="date" value="<?=$from?>" name="from" id="date" autofocus="hidden" required="" style="border-radius: 3px; padding: 3px; border: 1px solid #999; outline: none;" >
+							<input type="date" value="<?php if(isset($from)) { echo $from; }else{ echo $date; } ?>" name="from" id="date" autofocus="hidden" required="" style="border-radius: 3px; padding: 3px; border: 1px solid #999; outline: none;" value="<?= $date ?>" >
 
 						</div>
 						<div style="padding: 5px 0;">
 							<label style="width: 80px;" for="date2">Đến ngày</label>
-							<input type="date" value="<?=$to?>" name="to" id="date2" autofocus="hidden" required=""  style="border-radius: 3px; padding: 3px; border: 1px solid #999; outline: none;">
+							<input type="date" value="<?php if(isset($to)) { echo $to; }else{ echo $date; } ?>" name="to" id="date2" autofocus="hidden" required=""  style="border-radius: 3px; padding: 3px; border: 1px solid #999; outline: none;" >
 
 						</div>
 						<button type="submit" style="padding: 5px 10px; border-radius: 3px; border: none;">Search</button>

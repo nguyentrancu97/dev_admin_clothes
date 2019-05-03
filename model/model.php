@@ -73,7 +73,8 @@ class model{
 	}
 	function delete($id){
 		$sql = "DELETE FROM ".$this->table." WHERE ".$this->primary_key." = '".$id."' ";
-		
+		// echo $sql;
+		// die;
 		$result = mysqli_query($this->conn, $sql);
 		return $result;
 	}

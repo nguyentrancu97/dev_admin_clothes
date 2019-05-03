@@ -4,7 +4,7 @@
 	<!-- Content Header (Page header) -->
 	<section class="content-header">
 		<h1>
-			QUẢN LÍ SLIDER
+			MANAGER SLIDER
 			<!--  <div class="#kq"></div> -->
 		</h1>
    <!--  <ol class="breadcrumb">
@@ -26,7 +26,7 @@
 			
 				<thead>
 					<tr>
-						<th>Code</th>
+					
 						<th>Title</th>
 						<th>Image</th>
 						<th>Content</th>
@@ -39,15 +39,15 @@
 					<?php 
 					foreach ($data as $row) {?>
 						<tr>
-							<td><?= $row['code']?></td>
+							
 							
 							<td><?= $row['title']?></td>
 							<td><img style="width:50px; height:50px;" src="public/images/uploads/<?= $row['image'] ?>"></td>
 							<td><?= $row['content'] ?></td>
 							
 							<td>
-								<a href="?role=admin&mod=slider&act=edit&code=<?php echo $row['code'] ?>" class="btn btn-success"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-								<a href="?role=admin&mod=slider&act=delete&code=<?php echo $row['code'] ?>" class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+								<a href="?role=admin&mod=slider&act=edit&id=<?php echo $row['id'] ?>" class="btn btn-success"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+								<a href="" data-url="?role=admin&mod=slider&act=delete&id=<?php echo $row['id'] ?>" class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
 
 
 							</td>

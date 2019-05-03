@@ -19,8 +19,10 @@ class LoginController
 		
 		$_SESSION['isLogin'] = $status;
 		
-		if($_SESSION['isLogin']){
+		if($_SESSION['isLogin']['role_code'] == 'BOSS' || $_SESSION['isLogin']['role_code'] == 'ADMIN' ){
 			header('Location: index.php?role=admin&mod=product&act=T_list');
+		}elseif($_SESSION['isLogin']['role_code'] == 'EMPLOYEE'){
+			header('Location: index.php?role=admin&mod=order&act=T_list');
 		}else{
 			setcookie('false','login',time()+1);
 			header('Location: index.php?act=login');

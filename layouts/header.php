@@ -232,10 +232,11 @@
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MAIN NAVIGATION</li>
-        
-        <li><a href="?role=admin&mod=product&act=T_list"><i class="fa fa-book"></i> <span>Product</span></a></li>
 <?php include_once('helper/middleware.php');
-$middleware = new Middleware(); ?>
+$middleware = new Middleware(); ?>  
+ <?php if($middleware->check_boss() || $middleware->check_admin()){ ?>    
+        <li><a href="?role=admin&mod=product&act=T_list"><i class="fa fa-book"></i> <span>Product</span></a></li>
+<?php } ?>
 <?php if($middleware->check_boss() || $middleware->check_admin() || $middleware->check_employee()){ ?>
         <li><a href="?role=admin&mod=order&act=T_list"><i class="fa fa-book"></i> <span> Order</span></a></li>
 <?php } ?>

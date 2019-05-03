@@ -43,7 +43,7 @@
 							
 							<td>
 								<a href="?role=admin&mod=screen_size&act=edit&code=<?php echo $row['code'] ?>" class="btn btn-success"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-								<a href="?role=admin&mod=screen_size&act=delete&code=<?php echo $row['code'] ?>" class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+								<a href="" data-url="?role=admin&mod=screen_size&act=delete&code=<?php echo $row['code'] ?>" class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
 
 
 							</td>

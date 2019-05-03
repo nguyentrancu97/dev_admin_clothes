@@ -138,7 +138,7 @@
 							</tr>
 						</tbody>
 				</table>
-			<?php if($data_order['status'] < 4 && $data_order['status'] > 1){ ?>
+			<?php if($data_order['status'] < 4 && $data_order['status'] >= 1){ ?>
 			<a class="btn btn-success" href="?role=admin&mod=order&act=process&order_id=<?php echo 
 			$order_id ?>&status=<?=$data_order['status'] ?>">Xử lí</a>
 			<?php } ?>

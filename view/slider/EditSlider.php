@@ -4,7 +4,7 @@
 	<!-- Content Header (Page header) -->
 	<section class="content-header">
 		<h1>
-			SỬA ROLE
+			EDIT SLIDER
 			<!--  <div class="#kq"></div> -->
 		</h1>
    <!--  <ol class="breadcrumb">
@@ -20,10 +20,7 @@
 	<div class="box">
 		<div class="box-header with-border">
 			<form action="?role=admin&mod=slider&act=update" method="POST" enctype="multipart/form-data" role="form">
-				<div class="form-group">
-					<label for="">Code</label>
-					<input type="text" class="form-control" value="<?= $data['code'] ?>" name="code" required="required" readonly autocomplete="off">
-				</div>
+				<input type="hidden" name="id" value="<?= $data['id'] ?>">
 				<div class="form-group">
 					<label for="">Title</label>
 					<input type="text" class="form-control" value="<?= $data['title'] ?>" name="title" required="required" autocomplete="off">

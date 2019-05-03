@@ -4,7 +4,7 @@
 	<!-- Content Header (Page header) -->
 	<section class="content-header">
 		<h1>
-			Thêm customer
+			ADD CUSTOMER
 			<!--  <div class="#kq"></div> -->
 		</h1>
    <!--  <ol class="breadcrumb">

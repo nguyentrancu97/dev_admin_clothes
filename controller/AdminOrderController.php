@@ -13,6 +13,7 @@ class AdminOrderController{
 	}
  	function T_list(){
  		$data = $this->model_order->ListOrder();
+ 		$date = date('Y-m-d');
  		
  		include_once('view/order/ListOrder.php');
  	}
@@ -134,6 +135,7 @@ class AdminOrderController{
  		if($status==0){
  			header('location: ?role=admin&mod=order&act=T_list');
  		}
+ 		$date = date('Y-m-d');
  		$data = $this->model_order->filter_by_status($status);
  		include_once('view/order/ListOrder.php');
  	}
@@ -141,6 +143,7 @@ class AdminOrderController{
  	function filter_date(){
  		$from = $_POST['from'];
  		$to = $_POST['to'];
+ 		$date = date('Y-m-d');
  		$data = $this->model_order->filter_date($from,$to);
  		include_once('view/order/ListOrder.php');
  	}

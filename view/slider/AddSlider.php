@@ -4,7 +4,7 @@
 	<!-- Content Header (Page header) -->
 	<section class="content-header">
 		<h1>
-			THÊM SLIDER
+			ADD SLIDER
 			<!--  <div class="#kq"></div> -->
 		</h1>
    <!--  <ol class="breadcrumb">
@@ -20,13 +20,10 @@
 	<div class="box">
 		<div class="box-header with-border">
 			<form action="?role=admin&mod=slider&act=store" method="POST" enctype="multipart/form-data" role="form">
-				<div class="form-group">
-					<label for="">Code</label>
-					<input type="text" class="form-control" name="code" required="required" autocomplete="off" <?php if(isset($_SESSION['value_old'])){ ?> value="<?= $_SESSION['value_old']['code'] ?>" <?php } ?>>
-				</div>
+				
 				<div class="form-group">
 					<label for="">Title</label>
-					<input type="text" class="form-control" name="title" required="required" autocomplete="off" <?php if(isset($_SESSION['value_old'])){ ?> value="<?= $_SESSION['value_old']['title'] ?>" <?php } ?>>
+					<input type="text" class="form-control" name="title" required="required" autocomplete="off" >
 				</div>
 				<div class="form-group">
 					<label for="">Image</label>
@@ -35,9 +32,7 @@
 				<div class="form-group">
 					<label for="">Content</label>
 					<textarea id="content" name="content"> 
-						<?php if(isset($_SESSION['value_old'])){
-							echo $_SESSION['value_old']['content'];
-						} ?>
+						
 					</textarea>
 				</div>
 				

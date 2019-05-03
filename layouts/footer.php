@@ -224,6 +224,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/datepicker/0.6.5/datepicker.js"></script>
 <script src="public/bower_components/ckeditor_full/ckeditor.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 <script>
   $(document).ready(function () {
@@ -292,3 +293,35 @@
 <?php } ?>
 </body>
 </html>
+<script type="text/javascript">
+  $(document).on('click','.btn-danger',function(e){
+
+    e.preventDefault();
+    var url = $(this).attr('data-url');
+    swal({
+      title: "Are you sure?",
+      text: "Once deleted, you will not be able to recover this imaginary file!",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    })
+    .then((willDelete) => {
+      if (willDelete) {
+        $.ajax({
+          type:'get',
+          url:url,
+          success: function(res){
+            location.reload();
+          },
+
+        })
+        swal("Poof! Your imaginary file has been deleted!", {
+          icon: "success",
+        });
+      } else {
+        swal("Your imaginary file is safe!");
+      }
+    });
+
+  });
+</script>

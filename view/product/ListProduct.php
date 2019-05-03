@@ -41,7 +41,7 @@
 					foreach ($data as $row) {?>
 						<tr>
 							<td><?= $row['code']?></td>
-							<td><?= $row['name']?></td>
+							<td style="width: 350px;"><?= $row['name']?></td>
 							<td><?= $row['quantity']?></td>
 							<td><img style="width:50px; height:50px;" src="public/images/uploads/<?= $row['image']?>"></td>
 							<td><?= $row['status']?></td>
@@ -53,7 +53,7 @@
 								<a href="?role=admin&mod=product&act=detail&id=<?php echo $row['id'] ?>" class="btn btn-info"><i class="fa fa-eye" aria-hidden="true"></i></a>
 								<a href="?role=admin&mod=product&act=edit&id=<?php echo $row['id'] ?>" class="btn btn-success"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
 								
-								<a href="?role=admin&mod=product&act=delete&id=<?php echo $row['id'] ?>" class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+								<a href="" data-url="?role=admin&mod=product&act=delete&id=<?php echo $row['id'] ?>" class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
 								
 
 							</td>
@@ -78,3 +78,5 @@
 </div>
 <!-- /.content-wrapper -->
 <?php include_once("layouts/footer.php") ?>
+
+
