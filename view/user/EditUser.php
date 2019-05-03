@@ -20,6 +20,7 @@
 	<div class="box">
 		<div class="box-header with-border" id="table">
 			<form action="?role=admin&mod=user&act=update" method="POST" enctype="multipart/form-data" role="form">
+				<input type="hidden" name="id" value="<?= $data['id'] ?>">
 				<div class="form-group">
 					<label for="">Code</label>
 					<input type="text" class="form-control" value="<?= $data['code'] ?>" name="code" required="required" placeholder="ABC" readonly autocomplete="off">
@@ -37,8 +38,29 @@
 					<input type="text" class="form-control" value="<?= $data['phone'] ?>" name="phone"
 					 required="required" placeholder="888-888-8888" pattern="[0-9]{3}[-][0-9]{3}[-][0-9]{4}" maxlength="12" autocomplete="off">
 				</div>
-				
-				
+				<?php if($data['role_id'] !== null){   ?>
+				<div class="form-group">
+					<label for="">Role</label>
+					<select class="form-control" name="role_id" >
+						
+						<?php foreach ($role as $value) { ?>
+							<option value="<?= $value['id'] ?>"
+
+								<?php if(isset($_SESSION['value_old']) && $value['id'] == $_SESSION['value_old']['role_id']){?>
+									selected
+								<?php }else{ 
+									if($value['id'] == $data['role_id']){?> 
+										selected 
+									<?php } ?> 
+								<?php } ?>	
+									><?= $value['name']?></option>
+									
+
+								
+						<?php } ?>
+					</select>
+				</div>
+				<?php } ?>
 				<div class="form-group" style="margin-top: 38px;">
 
 					<button type="submit" class="btn btn-primary">Edit</button>

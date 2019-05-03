@@ -36,6 +36,7 @@
 					<label for="">Email</label>
 					<input type="email" class="form-control" name="email" autocomplete="off" required="required" placeholder="dev@gmail.com" <?php if(isset($_SESSION['value_old'])){ ?> value="<?= $_SESSION['value_old']['email'] ?>" <?php } ?>>
 				</div>
+				
 				<div class="form-group">
 					<label for="">Password</label>
 					<input type="password" class="form-control" name="password" autocomplete="off" required="required" <?php if(isset($_SESSION['value_old'])){ ?> value="<?= $_SESSION['value_old']['password'] ?>" <?php } ?>>

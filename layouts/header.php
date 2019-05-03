@@ -233,9 +233,11 @@
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MAIN NAVIGATION</li>
         
-        <li><a href="?role=admin&mod=statistical&act=getTopSale "><i class="fa fa-book"></i> <span>Sản phẩm bán chạy nhất</span></a></li>
-        
-       
+        <li><a href="?role=admin&mod=product&act=T_list"><i class="fa fa-book"></i> <span>Product</span></a></li>
+        <li><a href="?role=admin&mod=order&act=T_list"><i class="fa fa-book"></i> <span> Order</span></a></li>
+        <li><a href="?role=admin&mod=statistical&act=getTopSale "><i class="fa fa-book"></i> <span>Top Best Sell Product</span></a></li>
+        <li><a href="?role=admin&mod=statistical&act=getTopStaff "><i class="fa fa-book"></i> <span>Top Best Seller</span></a></li>
+      
         <li class="treeview active">
           <a href="#">
             <i class="fa fa-dashboard"></i> <span>Manager</span>
@@ -244,7 +246,7 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="?role=admin&mod=product&act=T_list"><i class="fa fa-circle-o"></i>Product</a></li>
+            
             <li><a href="?role=admin&mod=cpu&act=T_list"><i class="fa fa-circle-o"></i>Cpu</a></li>
             <li><a href="?role=admin&mod=ram&act=T_list"><i class="fa fa-circle-o"></i>Ram</a></li>
             <li><a href="?role=admin&mod=screen_size&act=T_list"><i class="fa fa-circle-o"></i>Screen Size</a></li>
@@ -270,7 +272,7 @@
             </span>
           </a>
         </li> -->
-        <li><a href="?role=admin&mod=order&act=T_list"><i class="fa fa-book"></i> <span>Order</span></a></li>
+        
        
         
       </ul>

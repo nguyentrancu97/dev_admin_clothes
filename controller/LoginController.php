@@ -20,7 +20,7 @@ class LoginController
 		$_SESSION['isLogin'] = $status;
 		
 		if($_SESSION['isLogin']){
-			header('Location: index.php?role=admin&mod=statistical&act=getTopSale');
+			header('Location: index.php?role=admin&mod=product&act=T_list');
 		}else{
 			setcookie('false','login',time()+1);
 			header('Location: index.php?act=login');

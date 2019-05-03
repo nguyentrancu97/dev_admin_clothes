@@ -28,6 +28,7 @@
 						<th>Name</th>
 						<th>Email</th>
 						<th>Phone</th>
+						<th>Role</th>
 						<th>Action</th>
 					</tr>
 				</thead>
@@ -39,13 +40,15 @@
 							<td><?= $row['name']?></td>
 							<td><?= $row['email']?></td>		
 							<td><?= $row['phone']?></td>
-											
-							
+							<td><?= $row['role_name']?></td>
 							<td>
+								<?php if($row['role_name'] === null){ ?>
+								<a href="?role=admin&mod=user&act=role&code=<?php echo $row['code'] ?>" class="btn btn-info"><i class="fa fa-plus" aria-hidden="true"></i></a>
+								<?php } ?>
 								<a href="?role=admin&mod=user&act=edit&code=<?php echo $row['code'] ?>" class="btn btn-success"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
 								<a href="?role=admin&mod=user&act=delete&code=<?php echo $row['code'] ?>" class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
 
-
+								
 							</td>
 
 						</tr> 

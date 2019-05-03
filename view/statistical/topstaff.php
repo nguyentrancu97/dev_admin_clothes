@@ -4,7 +4,7 @@
 	<!-- Content Header (Page header) -->
 	<section class="content-header">
 		<h1>
-			TOP BEST SELL PRODUCT 
+			TOP BEST SELLER
 			<!--  <div class="#kq"></div> -->
 		</h1>
     <!-- <ol class="breadcrumb">
@@ -27,10 +27,13 @@
 					<tr>
 						<th>Code</th>
 						<th>Name</th>
-						<th>Quantity</th>
-						<th>Revenue</th>
+						<th>Email</th>
+						<th>Total order</th>
+						<th>Total price</th>
+						<th>Total quantity</th>
+						<th>Total product</th>
 						
-						
+						<th>Action</th>
 					</tr>
 				</thead>
 				<tbody id="tbody">
@@ -39,11 +42,16 @@
 						<tr>
 							<td><?= $row['code']?></td>
 							<td><?= $row['name']?></td>
+							<td><?= $row['email']?></td>
+							<td><?= $row['total_order']?></td>
+							<td><?= number_format($row['total_price']) ?>đ</td>
 							<td><?= $row['total_quantity']?></td>
-							<td><?= number_format($row['sub_total'])?>đ</td>
+							<td><?= $row['total_product']?></td>
 							
 							
-							
+							<td>
+								<a href="?role=admin&mod=statistical&act=order_by_staff&staff_id=<?php echo $row['created_by'] ?>" class="btn btn-info"><i class="fa fa-eye" aria-hidden="true"></i></a>
+							</td>
 
 						</tr> 
 						<?php   
