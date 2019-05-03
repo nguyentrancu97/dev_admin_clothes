@@ -43,7 +43,7 @@
 							<td><?= $row['code']?></td>
 							<td style="width: 350px;"><?= $row['name']?></td>
 							<td><?= $row['quantity']?></td>
-							<td><img style="width:50px; height:50px;" src="public/images/uploads/<?= $row['image']?>"></td>
+							<td><img style="width:50px; height:50px;" src="../upload/<?= $row['image']?>"></td>
 							<td><?= $row['status']?></td>
 							
 							<td><?= number_format($row['price']) ?>đ</td>

@@ -91,7 +91,7 @@
 						<tbody>
 							
 							<tr>	
-								<td ><img style="width:500px; height: 500px;" src="public/images/uploads/<?php echo $data_product['image'] ?>"></td>
+								<td ><img style="width:500px; height: 500px;" src="../upload/<?php echo $data_product['image'] ?>"></td>
 							</tr>
 						</tbody>
 					</table>

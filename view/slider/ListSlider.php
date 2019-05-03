@@ -42,7 +42,7 @@
 							
 							
 							<td><?= $row['title']?></td>
-							<td><img style="width:50px; height:50px;" src="public/images/uploads/<?= $row['image'] ?>"></td>
+							<td><img style="width:50px; height:50px;" src="../upload/<?= $row['image'] ?>"></td>
 							<td><?= $row['content'] ?></td>
 							
 							<td>

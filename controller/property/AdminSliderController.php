@@ -20,7 +20,7 @@ class AdminSliderController{
  		
  		if(isset($_FILES['image'])){
  			$data['image'] = 'sliders/'.$_FILES['image']['name'];
- 			move_uploaded_file($_FILES['image']['tmp_name'],"public/images/uploads/sliders/".$_FILES['image']['name']);
+ 			move_uploaded_file($_FILES['image']['tmp_name'],"../upload/sliders/".$_FILES['image']['name']);
  			$status = $this->model_slider->create($data);
 // var_dump($status);
 // die;
@@ -42,7 +42,7 @@ class AdminSliderController{
  		$data = $_POST;
  		if($_FILES['image']['error']!= 4){
  			$data['image'] = 'sliders/'.$_FILES['image']['name'];
- 			move_uploaded_file($_FILES['image']['tmp_name'],"public/images/uploads/sliders/".$_FILES['image']['name']);
+ 			move_uploaded_file($_FILES['image']['tmp_name'],"../upload/sliders/".$_FILES['image']['name']);
  			
  			$s = $this->model_slider->update($data);
  			if($s){

@@ -69,7 +69,7 @@ class AdminProductController{
  			$data['created_date'] = Date('Y-m-d H:i:s');
 	 		if(isset($_FILES['image'])){
 	 			$data['image'] = $_FILES['image']['name'];
-	 			move_uploaded_file($_FILES['image']['tmp_name'],"public/images/uploads/".$_FILES['image']['name']);
+	 			move_uploaded_file($_FILES['image']['tmp_name'],"../upload/".$_FILES['image']['name']);
 	 			$status = $this->model_product->create($data);
 	 			if($status){
 	 				setcookie('true','abc',time()+1);
@@ -108,7 +108,7 @@ class AdminProductController{
 
  		if($_FILES['image']['error']!= 4){
  			$data['image'] = $_FILES['image']['name'];
- 			move_uploaded_file($_FILES['image']['tmp_name'],"public/images/uploads/".$_FILES['image']['name']);
+ 			move_uploaded_file($_FILES['image']['tmp_name'],"../upload/".$_FILES['image']['name']);
  			
  			$s = $this->model_product->update($data);
  			if($s){
